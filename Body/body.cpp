@@ -1,6 +1,6 @@
 #include "body.h"
 
-GravitationalBody:: GravitationalBody(int ID, valtype mass, vector<valtype> position, vector<valtype> momentum): ID(ID), mass(mass), position(position), momentum(momentum){}
+GravitationalBody:: GravitationalBody(const int ID, const valtype mass,const vector<valtype> position,const vector<valtype> momentum): ID(ID), mass(mass), position(position), momentum(momentum){}
 
 void GravitationalBody:: writeCoords(ofstream& outstream, const string& sep, const string& end)const {
     for(auto& coord: position){
@@ -9,9 +9,9 @@ void GravitationalBody:: writeCoords(ofstream& outstream, const string& sep, con
     outstream<<end;
 }
 
-GravitationalSystem::  GravitationalSystem(vector<GravitationalBody>&& bodies): bodies(bodies){}
+GravitationalSystem::  GravitationalSystem(const vector<GravitationalBody>&& bodies): bodies(bodies){}
 
-GravitationalSystem::  GravitationalSystem(string&& infile){
+GravitationalSystem::  GravitationalSystem(const string&& infile){
     //expecting inputfile with format ID M X Y  Z VX VY VZ \N
     bodies = vector<GravitationalBody>();
     ifstream instream(infile);
@@ -26,15 +26,15 @@ GravitationalSystem::  GravitationalSystem(string&& infile){
     }
 }
 
-GravitationalBody& GravitationalSystem:: operator[](int i){
+GravitationalBody& GravitationalSystem:: operator[](const int i){
     return bodies[i];
 }
 
-int GravitationalSystem::size(){
+int GravitationalSystem::size()const{
     return bodies.size();
 }
 
-void GravitationalSystem:: writeBodyCoords(ofstream& outstream, string coordSep, string bodySep, string end )const {
+void GravitationalSystem:: writeBodyCoords(ofstream& outstream, const string& coordSep, const string& bodySep, const string& end )const {
     for(auto& body:bodies){
         body.writeCoords(outstream, coordSep, bodySep);
     }

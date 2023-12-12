@@ -4,11 +4,11 @@
 * create files **Integrators/MyIntegrator.h** and **Integrators/MyIntegrator.cpp**
 * declare class **MyIntegrator** with public inheritance from **Integrator**
 ---------------------
-* make **MyIntegrator(force_calulator_t f, valtype step)** constructor which takes as input
+* make **MyIntegrator(const force_calulator_t f_t, const valtype step)** constructor which takes as input
   1. the force_calculator to use
   2. step size
 and initialises the corresponding class fields
-* make **GravitationalSystem nextStep(GravitationalSystem oldsystem)** function which takes as input a gravitational system, and returns a system 1 step ahead in time.
+* make **GravitationalSystem nextStep(GravitationalSystem oldsystem) const override** function which takes as input a gravitational system, and returns a system 1 step ahead in time.
 ---------------------
 * add pragma once and guard statements to .h file with a unique name
 * include **"Integrator.h"** and add declarations of the above in the .h file

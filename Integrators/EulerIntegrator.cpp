@@ -6,10 +6,10 @@
 //         GravitationalSystem nextStep(GravitationalSystem oldsystem) override;
 // };
 
-EulerIntegrator::EulerIntegrator(force_calulator_t f, valtype step):Integrator(f,step){}
+EulerIntegrator::EulerIntegrator(const force_calulator_t f, const valtype step):Integrator(f,step){}
 
 
-GravitationalSystem EulerIntegrator::nextStep(GravitationalSystem oldsystem){
+GravitationalSystem EulerIntegrator::nextStep(GravitationalSystem oldsystem) const{
     ForceCalculator* forceCalculator;
     switch (this->f_t){
         case Direct : forceCalculator = new DirectForceCalculator(oldsystem); break;

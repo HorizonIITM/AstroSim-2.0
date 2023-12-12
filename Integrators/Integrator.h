@@ -11,12 +11,12 @@
 
 class Integrator{ //abstract class
     protected:
-        force_calulator_t f_t;
-        valtype step;
+        const force_calulator_t f_t;
+        const valtype step;
     public:
-        Integrator(force_calulator_t f_t, valtype step);
+        Integrator(const force_calulator_t f_t, const valtype step);
 
-        virtual GravitationalSystem nextStep(GravitationalSystem oldsystem) = 0; 
+        virtual GravitationalSystem nextStep(GravitationalSystem oldsystem) const= 0; 
         //should make it reference. but then need to change implementation
 };
 

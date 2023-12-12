@@ -6,9 +6,9 @@
 //         valtype getForce(int i);
 // };
 
-DirectForceCalculator::DirectForceCalculator(GravitationalSystem s):ForceCalculator(s){}
+DirectForceCalculator::DirectForceCalculator(GravitationalSystem& s):ForceCalculator(s){}
 
-valtype DirectForceCalculator::getForce(int i, int coordType){
+valtype DirectForceCalculator::getForce(const int i, const int coordType){
     GravitationalBody current_body = s[i];
     valtype der = 0;
     for(auto body : s.bodies){

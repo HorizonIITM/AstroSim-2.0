@@ -9,4 +9,4 @@
 //         virtual GravitationalSystem nextStep(GravitationalSystem oldsystem) = 0;
 // };
 
-Integrator::Integrator(force_calulator_t f_t, valtype step):f_t(f_t),step(step){}
+Integrator::Integrator(const force_calulator_t f_t, const valtype step):f_t(f_t),step(step){}

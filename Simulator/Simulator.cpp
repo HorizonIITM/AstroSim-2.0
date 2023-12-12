@@ -1,13 +1,13 @@
 #include "Simulator.h"
 
-Simulator::Simulator(GravitationalSystem s, integrator_t i_t, force_calulator_t f_t, valtype step)
+Simulator::Simulator(GravitationalSystem s, const integrator_t i_t, const force_calulator_t f_t, const valtype step)
      :s(s), i_t(i_t), f_t(f_t), step(step){}
 
-Simulator::Simulator(std::string&& infile,  integrator_t i_t, force_calulator_t f_t, valtype step)
+Simulator::Simulator(std::string&& infile,  const integrator_t i_t, const force_calulator_t f_t, const valtype step)
     :s(GravitationalSystem(std::move(infile))),
      i_t(i_t), f_t(f_t), step(step){}
 
-void Simulator::solve(valtype totalTime, string filename){
+void Simulator::solve(const valtype totalTime, const string filename){
 
     Integrator* integrator;
     switch(i_t){

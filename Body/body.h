@@ -24,18 +24,18 @@ struct GravitationalBody{
     vector<valtype> position;
     vector<valtype> momentum;
 
-    GravitationalBody(int, valtype, vector<valtype>, vector<valtype>);
+    GravitationalBody(const int, const valtype,const vector<valtype>,const vector<valtype>);
     void writeCoords(ofstream&, const string&, const string&)const;
 };
 
 struct GravitationalSystem{
     vector<GravitationalBody> bodies;
 
-    GravitationalSystem(vector<GravitationalBody>&&);
-    GravitationalSystem(string&&);
+    GravitationalSystem(const vector<GravitationalBody>&&);
+    GravitationalSystem(const string&&);
 
-    GravitationalBody& operator[](int i);
-    int size();
+    GravitationalBody& operator[](const int i);
+    int size() const;
 
-    void writeBodyCoords(std::ofstream& outstream, std::string coordSep, std::string bodySep, std::string end )const;
+    void writeBodyCoords(std::ofstream& outstream, const string& coordSep, const string& bodySep, const string& end )const;
 };
