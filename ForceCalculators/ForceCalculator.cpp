@@ -9,5 +9,5 @@
 // };
 
 
-ForceCalculator::ForceCalculator(GravitationalSystem s):s(s){}
+ForceCalculator::ForceCalculator(GravitationalSystem& s):s(s){}
 

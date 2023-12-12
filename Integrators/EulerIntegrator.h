@@ -10,7 +10,7 @@
 class EulerIntegrator: public Integrator{
     public:
         EulerIntegrator(force_calulator_t f, valtype step);
-        GravitationalSystem nextStep(GravitationalSystem oldsystem) override;
+        GravitationalSystem nextStep(GravitationalSystem oldsystem) const override;
 };
 
 #endif

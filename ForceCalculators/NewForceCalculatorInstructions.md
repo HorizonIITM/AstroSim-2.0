@@ -4,8 +4,8 @@
 * create files ForceCalculators/MyForceCalculator.h and ForceCalculators/MyForceCalculator.cpp
 * declare class MyForceCalculator with public inheritance from ForceCalculator
 ---------------------
-* make **MyForceCalculator(GravitationalSystem s)** constructor which takes as input a gravitational system and initialises the corresponding class field
-* make **valtype getForce (int i, int coordType)** function which takes as input 
+* make **MyForceCalculator(GravitationalSystem& s)** constructor which takes as input a gravitational system and initialises the corresponding class field
+* make **valtype getForce (const int i, const int coordType) override** function which takes as input 
   1. index of body whose net force we want to calculate
   2. the index of the coordinate along which we want to find the force
 ---------------------

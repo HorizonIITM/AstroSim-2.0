@@ -11,16 +11,16 @@
 
 class Simulator{
     private:
-        integrator_t i_t;
-        force_calulator_t f_t;
+        const integrator_t i_t;
+        const force_calulator_t f_t;
         GravitationalSystem s;
-        valtype step;
+        const valtype step;
     
     public:
-        Simulator(GravitationalSystem s, integrator_t i_t, force_calulator_t f_t, valtype step);
-        Simulator(std:: string&& infile, integrator_t i_t, force_calulator_t f_t, valtype step);
+        Simulator(GravitationalSystem s, const integrator_t i_t, const force_calulator_t f_t, const valtype step);
+        Simulator(std:: string&& infile, const integrator_t i_t, const force_calulator_t f_t, const valtype step);
 
-        void solve(valtype totaltime, string filename);
+        void solve(const valtype totaltime, const string filename);
 };
 
 

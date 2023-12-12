@@ -9,8 +9,8 @@
 
 class DirectForceCalculator : public ForceCalculator{
     public:
-        DirectForceCalculator(GravitationalSystem s);
-        valtype getForce (int i, int coordType) override;
+        DirectForceCalculator(GravitationalSystem& s);
+        valtype getForce (const int i, const int coordType) override;
 };
 
 
