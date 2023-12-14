@@ -1,11 +1,11 @@
 #include "ForceCalculator.h"
 
 // class ForceCalculator{
-//     private:
+//     protected:
 //         GravitationalSystem s;
 //     public:
-//         ForceCalculator(GravitationalSystem s);
-//         virtual valtype getForce(int i) = 0;
+//         ForceCalculator(GravitationalSystem& s);
+//         virtual valtype getForce(const int i, const int coordType)= 0;
 // };
 
 

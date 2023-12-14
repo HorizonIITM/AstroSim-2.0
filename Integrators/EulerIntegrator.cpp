@@ -1,20 +1,16 @@
 #include "EulerIntegrator.h"
 
-// class EulerIntegrator: public Integrator{ //virtual class
-//     force_calulator_t f_t;
+// class EulerIntegrator: public Integrator{
 //     public:
-//         GravitationalSystem nextStep(GravitationalSystem oldsystem) override;
+//         EulerIntegrator(const force_calulator_t f, const valtype step);
+//         GravitationalSystem nextStep(GravitationalSystem oldsystem) const override;
 // };
 
 EulerIntegrator::EulerIntegrator(const force_calulator_t f, const valtype step):Integrator(f,step){}
 
 
 GravitationalSystem EulerIntegrator::nextStep(GravitationalSystem oldsystem) const{
-    ForceCalculator* forceCalculator;
-    switch (this->f_t){
-        case Direct : forceCalculator = new DirectForceCalculator(oldsystem); break;
-        // case BarnesHut : forceCalculator = new BarnesHutForceCalculator(oldsystem); break;
-    }
+    ForceCalculator* forceCalculator = buildForceCalculator(oldsystem);
     //dont hardcode 3
     // vector<vector<valtype>> posderivs = vector<vector<valtype>>(oldsystem.size(), vector<valtype>(3,0));
     // vector<vector<valtype>> momderivs = vector<vector<valtype>>(oldsystem.size(), vector<valtype>(3,0));

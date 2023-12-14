@@ -13,6 +13,7 @@ class Integrator{ //abstract class
     protected:
         const force_calulator_t f_t;
         const valtype step;
+        ForceCalculator* buildForceCalculator(GravitationalSystem& oldsystem) const;
     public:
         Integrator(const force_calulator_t f_t, const valtype step);
 
