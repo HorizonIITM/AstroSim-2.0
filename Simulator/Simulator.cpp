@@ -1,5 +1,19 @@
 #include "Simulator.h"
 
+// class Simulator{
+//     private:
+//         const integrator_t i_t;
+//         const force_calulator_t f_t;
+//         GravitationalSystem s;
+//         const valtype step;
+    
+//     public:
+//         Simulator(GravitationalSystem s, const integrator_t i_t, const force_calulator_t f_t, const valtype step);
+//         Simulator(std:: string&& infile, const integrator_t i_t, const force_calulator_t f_t, const valtype step);
+
+//         void solve(const valtype totaltime, const string filename);
+// };
+
 Simulator::Simulator(GravitationalSystem s, const integrator_t i_t, const force_calulator_t f_t, const valtype step)
      :s(s), i_t(i_t), f_t(f_t), step(step){}
 

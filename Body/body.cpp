@@ -1,5 +1,15 @@
 #include "body.h"
 
+// struct GravitationalBody{
+//     int ID;
+//     valtype mass;
+//     vector<valtype> position;
+//     vector<valtype> momentum;
+
+//     GravitationalBody(const int, const valtype,const vector<valtype>,const vector<valtype>);
+//     void writeCoords(ofstream&, const string&, const string&)const;
+// };
+
 GravitationalBody:: GravitationalBody(const int ID, const valtype mass,const vector<valtype> position,const vector<valtype> momentum): ID(ID), mass(mass), position(position), momentum(momentum){}
 
 void GravitationalBody:: writeCoords(ofstream& outstream, const string& sep, const string& end)const {
@@ -8,6 +18,19 @@ void GravitationalBody:: writeCoords(ofstream& outstream, const string& sep, con
     }
     outstream<<end;
 }
+
+
+// struct GravitationalSystem{
+//     vector<GravitationalBody> bodies;
+
+//     GravitationalSystem(const vector<GravitationalBody>&&);
+//     GravitationalSystem(const string&&);
+
+//     GravitationalBody& operator[](const int i);
+//     int size() const;
+
+//     void writeBodyCoords(std::ofstream& outstream, const string& coordSep, const string& bodySep, const string& end )const;
+// };
 
 GravitationalSystem::  GravitationalSystem(const vector<GravitationalBody>&& bodies): bodies(bodies){}
 

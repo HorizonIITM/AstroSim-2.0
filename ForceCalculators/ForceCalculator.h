@@ -12,10 +12,7 @@ class ForceCalculator{
     protected:
         GravitationalSystem s;
     public:
-    
         ForceCalculator(GravitationalSystem& s);
-        //should make it reference. but then need to change implementation
-
         virtual valtype getForce(const int i, const int coordType)= 0;
 };
 

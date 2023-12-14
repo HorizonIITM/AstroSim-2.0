@@ -2,8 +2,8 @@
 
 // class DirectForceCalculator : public ForceCalculator{
 //     public:
-//         DirectForceCalculator(GravitationalSystem s);
-//         valtype getForce(int i);
+//         DirectForceCalculator(GravitationalSystem& s);
+//         valtype getForce (const int i, const int coordType) override;
 // };
 
 DirectForceCalculator::DirectForceCalculator(GravitationalSystem& s):ForceCalculator(s){}
