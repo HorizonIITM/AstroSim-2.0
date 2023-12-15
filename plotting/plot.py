@@ -10,6 +10,9 @@ if(n>1):
 
 data = pd.read_csv(filename);
 
+
+plt.style.use('dark_background')
+
 i = 1
 while(True):
     try:
