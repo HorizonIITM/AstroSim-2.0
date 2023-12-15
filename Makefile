@@ -28,7 +28,13 @@ run: build
 	./sim.exe "outfile.txt" "infile.txt" 20000 0.01
 
 plot:
-	python3 plotting/plot.py "outfile.txt"
+	python plotting/plot.py "outfile.txt"
+
+3dplot:
+	python plotting/3Dplot.py "outfile.txt" 10
+
+animate:
+	python plotting/animate.py "outfile.txt" 100
 
 clean:
 	rm -f */*.o
@@ -36,5 +42,3 @@ clean:
 	rm -f sim.exe
 
 runplot: run plot
-
-buildrunplot: build run plot
