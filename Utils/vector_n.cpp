@@ -123,3 +123,13 @@ vector_n operator*(const valtype x, const vector_n v){
     return v*x;
 }
 
+std::string vector_n::to_string(const std::string sep)const{
+    std::string s = "";
+    for(int i=0;i<size()-1;i++){
+        s+= std::to_string(operator[](i));
+        s+=sep;
+    }
+    s+=std::to_string(operator[](size()-1));
+    return s;
+}
+
