@@ -24,7 +24,7 @@ debug:
 	g++ $(CCFLAGS_DEBUG) -c Integrators/RK4Integrator.cpp				-o Integrators/RK4Integrator.o
 	g++ $(CCFLAGS_DEBUG) -c Simulator/Simulator.cpp						-o Simulator/Simulator.o
 
-	g++ $(CCFLAGS_DEBUG) -o sim.exe main.cpp Simulator/Simulator.o Integrators/EulerIntegrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/ForceCalculator.o  ForceCalculator/utils.o Body/body.o
+	g++ $(CCFLAGS_DEBUG) -o sim.exe main.cpp Simulator/Simulator.o Integrators/EulerIntegrator.o Integrators/RK4Integrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/ForceCalculator.o  ForceCalculator/utils.o Body/body.o
 
 run: build
 	./sim.exe "outfile.txt" "infile.txt" 20000 0.01
