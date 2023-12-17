@@ -12,5 +12,4 @@
 long double Q_rsqrt(long double);
 double      Q_rsqrt(double);
 
-valtype distSquare(vector3 const &p1, vector3 const &p2);
 #endif

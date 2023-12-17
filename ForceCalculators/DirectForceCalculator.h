@@ -10,7 +10,7 @@
 class DirectForceCalculator : public ForceCalculator{
     public:
         DirectForceCalculator(GravitationalSystem& s);
-        valtype getForce (const int i, const int coordType) override;
+        vector3 getForce (const int i) override;
 };
 
 

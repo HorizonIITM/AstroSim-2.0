@@ -8,6 +8,8 @@
 #include "Integrator.h"
 
 class RK4Integrator: public Integrator{
+    private:
+        GravitationalSystem nextMiniStep(GravitationalSystem oldsystem, valtype f)const;
     public:
         RK4Integrator(const force_calulator_t f, const valtype step);
         GravitationalSystem nextStep(GravitationalSystem oldsystem) const override;

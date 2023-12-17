@@ -22,11 +22,14 @@ class vector_n : protected std::vector<valtype>{
         vector_n operator -()const;  
         vector_n operator +=(const vector_n&);   
         vector_n operator -=(const vector_n&); 
-        vector_n operator *(const valtype&)const;
-        vector_n operator /(const valtype&)const;
-        vector_n operator *=(const valtype&);
-        vector_n operator /=(const valtype&);
+        vector_n operator *(const valtype)const;
+        vector_n operator /(const valtype)const;
+        vector_n operator *=(const valtype);
+        vector_n operator /=(const valtype);
+        valtype mag_square()const;
         //copy and move??
 };
+
+vector_n operator*(const valtype, const vector_n);
 
 #endif

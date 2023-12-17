@@ -81,14 +81,14 @@ vector_n vector_n::operator-=(const vector_n& v){
     return operator+=(-v);
 }
 
-vector_n vector_n::operator *(const valtype& v)const{
+vector_n vector_n::operator *(const valtype v)const{
     vector_n prod = vector_n(size());
     for(int i=0;i<size();i++){
         prod[i] = operator[](i)*v;
     }
     return prod;
 }
-vector_n vector_n::operator /(const valtype& v)const{
+vector_n vector_n::operator /(const valtype v)const{
     vector_n div = vector_n(size());
     for(int i=0;i<size();i++){
         div[i] = operator[](i)/v;
@@ -96,18 +96,30 @@ vector_n vector_n::operator /(const valtype& v)const{
     return div;
 }
 
-vector_n vector_n::operator *=(const valtype& v){
+vector_n vector_n::operator *=(const valtype v){
     for(int i=0;i<size();i++){
         operator[](i) = operator[](i)*v;
     }
     return *this;
 }
-vector_n vector_n::operator /=(const valtype& v){
+vector_n vector_n::operator /=(const valtype v){
     for(int i=0;i<size();i++){
         operator[](i) = operator[](i)/v;
     }
     return *this;
 }
 
+valtype vector_n::mag_square()const{
+    valtype m = 0;
+    for(int i=0;i<size();i++){
+        valtype c = operator[](i);
+        m+= c*c;
+    }
+    return m;
+}
 
+
+vector_n operator*(const valtype x, const vector_n v){
+    return v*x;
+}
 

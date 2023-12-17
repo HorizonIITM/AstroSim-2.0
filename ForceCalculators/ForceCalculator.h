@@ -13,7 +13,7 @@ class ForceCalculator{
         GravitationalSystem s;
     public:
         ForceCalculator(GravitationalSystem& s);
-        virtual valtype getForce(const int i, const int coordType)= 0;
+        virtual vector3 getForce(const int i)= 0;
 };
 
 
