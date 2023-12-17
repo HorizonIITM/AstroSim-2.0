@@ -11,10 +11,6 @@ EulerIntegrator::EulerIntegrator(const force_calulator_t f, const valtype step):
 
 GravitationalSystem EulerIntegrator::nextStep(GravitationalSystem oldsystem) const{
     ForceCalculator* forceCalculator = buildForceCalculator(oldsystem);
-    //dont hardcode 3
-    // vector<vector<valtype>> posderivs = vector<vector<valtype>>(oldsystem.size(), vector<valtype>(3,0));
-    // vector<vector<valtype>> momderivs = vector<vector<valtype>>(oldsystem.size(), vector<valtype>(3,0));
-
     for(int i=0;i<oldsystem.size();i++){
         for(int j=0;j<3;j++){
             valtype posderiv = oldsystem[i].momentum[j]/oldsystem[i].mass;

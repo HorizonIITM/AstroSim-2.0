@@ -15,16 +15,18 @@ using std::ifstream;
 #include <string>
 using std::string;
 
+#include "../Utils/vector3.h"
+
 #include <vector>
 using std::vector;
 
 struct GravitationalBody{
     int ID;
     valtype mass;
-    vector<valtype> position;
-    vector<valtype> momentum;
+    vector3 position;
+    vector3 momentum;
 
-    GravitationalBody(const int, const valtype,const vector<valtype>,const vector<valtype>);
+    GravitationalBody(const int, const valtype,const vector3,const vector3);
     void writeCoords(ofstream&, const string&, const string&)const;
 };
 

@@ -1,7 +1,8 @@
-#include "everything.h"
-
-//make a custom datastructure which is vector of size 3
-//move gravitational integrator to a separate file
+#include "Integrators/AllIntegrators.h"
+#include "ForceCalculators/AllForceCalculators.h"
+#include "Simulator/Simulator.h"
+#include "Body/body.h"
+#include "defs.h"
 
 int main(int argc, char *argv[]) {
     string outfile = "nbodyoutput.txt";

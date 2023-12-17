@@ -11,7 +11,10 @@ if n>1:
     filename = sys.argv[1]
 if n>2:
     stepsize = int(sys.argv[2])
+trail =True
     
+    
+
 data = pd.read_csv(filename,skiprows=lambda x: x%stepsize != 0);
 print(data.shape)
 
@@ -20,6 +23,11 @@ fig = plt.figure()
 ax = plt.axes(projection = '3d')
 
 def update(frame):
+    s = frame
+    if trail:
+        s = 0
+        
+    
     ax.cla()
     ax.grid(False)
     # ax.axis('off')
@@ -27,9 +35,9 @@ def update(frame):
     i = 1
     while(True):
         try:
-            x = data["x"+str(i)][:frame+1]
-            y = data["y"+str(i)][:frame+1]
-            z = data["z"+str(i)][:frame+1]
+            x = data["x"+str(i)][s:frame+1]
+            y = data["y"+str(i)][s:frame+1]
+            z = data["z"+str(i)][s:frame+1]
             p = ax.plot(x,y,z, label=f'Body {i}')
             ax.scatter(x.iloc[-1], y.iloc[-1], z.iloc[-1], s=5, marker='o', c = p[0].get_color())
             i+=1
