@@ -1,4 +1,8 @@
-#include "everything.h"
+#include "Integrators/AllIntegrators.h"
+#include "ForceCalculators/AllForceCalculators.h"
+#include "Simulator/Simulator.h"
+#include "Body/body.h"
+#include "defs.h"
 
 //make a custom datastructure which is vector of size 3
 //move gravitational integrator to a separate file
