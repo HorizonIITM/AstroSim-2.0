@@ -5,7 +5,7 @@
 #ifndef FORCE_CALCULATOR_H_
 #define FORCE_CALCULATOR_H_
 
-#include "utils.h"
+#include "../Utils/utils.h"
 #include "../Body/body.h"
 
 class ForceCalculator{

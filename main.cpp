@@ -4,9 +4,6 @@
 #include "Body/body.h"
 #include "defs.h"
 
-//make a custom datastructure which is vector of size 3
-//move gravitational integrator to a separate file
-
 int main(int argc, char *argv[]) {
     string outfile = "nbodyoutput.txt";
     string infile = "";

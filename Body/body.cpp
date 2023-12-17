@@ -3,18 +3,18 @@
 // struct GravitationalBody{
 //     int ID;
 //     valtype mass;
-//     vector<valtype> position;
-//     vector<valtype> momentum;
+//     vector3 position;
+//     vector3 momentum;
 
-//     GravitationalBody(const int, const valtype,const vector<valtype>,const vector<valtype>);
+//     GravitationalBody(const int, const valtype,const vector3,const vector3);
 //     void writeCoords(ofstream&, const string&, const string&)const;
 // };
 
-GravitationalBody:: GravitationalBody(const int ID, const valtype mass,const vector<valtype> position,const vector<valtype> momentum): ID(ID), mass(mass), position(position), momentum(momentum){}
+GravitationalBody:: GravitationalBody(const int ID, const valtype mass,const vector3 position,const vector3 momentum): ID(ID), mass(mass), position(position), momentum(momentum){}
 
 void GravitationalBody:: writeCoords(ofstream& outstream, const string& sep, const string& end)const {
-    for(auto& coord: position){
-        outstream<<coord<<sep;
+    for(int i=0;i<3;i++){
+        outstream<<position[i]<<sep;
     }
     outstream<<end;
 }
