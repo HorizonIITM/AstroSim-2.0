@@ -72,7 +72,7 @@ vector_n vector_n::operator+=(const vector_n& v){
         throw "Type Mismatch"; 
     }
     for(int i=0;i<size();i++){
-        operator[](i) = -operator[](i) + v[i];
+        operator[](i) = operator[](i) + v[i];
     }
     return *this;
 }
