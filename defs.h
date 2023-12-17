@@ -10,7 +10,7 @@ const valtype G  = 1;//6.67408e-11;
 
 enum integrator_t{
     Euler
-    // ,RK4
+    ,RK4
     // ,LeapFrog
 };
 

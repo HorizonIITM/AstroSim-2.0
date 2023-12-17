@@ -26,6 +26,7 @@ void Simulator::solve(const valtype totalTime, const string filename){
     Integrator* integrator;
     switch(i_t){
         case Euler : integrator = new EulerIntegrator(f_t, step); break;
+        case RK4 : integrator = new RK4Integrator(f_t, step); break;
     }
 
     valtype progTime = 0;
