@@ -13,10 +13,7 @@
 GravitationalBody:: GravitationalBody(const int ID, const valtype mass,const vector3 position,const vector3 momentum): ID(ID), mass(mass), position(position), momentum(momentum){}
 
 void GravitationalBody:: writeCoords(ofstream& outstream, const string& sep, const string& end)const {
-    for(int i=0;i<3;i++){
-        outstream<<position[i]<<sep;
-    }
-    outstream<<end;
+    outstream<<position.to_string(sep)<<end;
 }
 
 
