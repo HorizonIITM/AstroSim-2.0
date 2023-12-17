@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
     cout<<"Taking total time = "<<totalProgTime<<endl;
     cout<<"Taking step time = "<<step<<endl;
     
-    Simulator my_solver(std::move(infile), Euler, Direct, step);
+    Simulator my_solver(std::move(infile), RK4, Direct, step);
     my_solver.solve(totalProgTime, outfile);
     return 0;
 }

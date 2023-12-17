@@ -9,9 +9,10 @@ build:
 	g++ $(CCFLAGS) -c ForceCalculators/utils.cpp       				-o ForceCalculators/utils.o
 	g++ $(CCFLAGS) -c Integrators/Integrator.cpp					-o Integrators/Integrator.o
 	g++ $(CCFLAGS) -c Integrators/EulerIntegrator.cpp				-o Integrators/EulerIntegrator.o
+	g++ $(CCFLAGS) -c Integrators/RK4Integrator.cpp				    -o Integrators/RK4Integrator.o
 	g++ $(CCFLAGS) -c Simulator/Simulator.cpp						-o Simulator/Simulator.o
 
-	g++ $(CCFLAGS) -o sim.exe main.cpp Simulator/Simulator.o Integrators/EulerIntegrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/ForceCalculator.o  ForceCalculators/utils.o Body/body.o
+	g++ $(CCFLAGS) -o sim.exe main.cpp Simulator/Simulator.o Integrators/EulerIntegrator.o Integrators/RK4Integrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/ForceCalculator.o  ForceCalculators/utils.o Body/body.o
 
 debug:
 	g++ $(CCFLAGS_DEBUG) -c Body/body.cpp     							-o Body/body.o
@@ -20,6 +21,7 @@ debug:
 	g++ $(CCFLAGS_DEBUG) -c ForceCalculators/utils.cpp       				-o ForceCalculators/utils.o
 	g++ $(CCFLAGS_DEBUG) -c Integrators/Integrator.cpp					-o Integrators/Integrator.o
 	g++ $(CCFLAGS_DEBUG) -c Integrators/EulerIntegrator.cpp				-o Integrators/EulerIntegrator.o
+	g++ $(CCFLAGS_DEBUG) -c Integrators/RK4Integrator.cpp				-o Integrators/RK4Integrator.o
 	g++ $(CCFLAGS_DEBUG) -c Simulator/Simulator.cpp						-o Simulator/Simulator.o
 
 	g++ $(CCFLAGS_DEBUG) -o sim.exe main.cpp Simulator/Simulator.o Integrators/EulerIntegrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/ForceCalculator.o  ForceCalculator/utils.o Body/body.o
