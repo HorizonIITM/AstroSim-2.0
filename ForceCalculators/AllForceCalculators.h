@@ -7,5 +7,6 @@
 
 #include "ForceCalculator.h"
 #include "DirectForceCalculator.h"
+#include "BarnesHut.h"
 
 #endif
