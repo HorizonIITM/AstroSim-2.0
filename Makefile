@@ -19,7 +19,7 @@ build:
 	g++ $(CCFLAGS) -c Utils/vector_n.cpp 							-o Utils/vector_n.o
 	g++ $(CCFLAGS) -c Utils/vector3.cpp 							-o Utils/vector3.o
 
-	g++ $(CCFLAGS) -o sim.exe main.cpp Simulator/Simulator.o Integrators/EulerIntegrator.o Integrators/RK4Integrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/BarnesHut.o ForceCalculators/ForceCalculator.o  Body/body.o Utils/utils.o Utils/vector_n.o Utils/vector3.o
+	g++ $(CCFLAGS) -o sim.exe main.cpp Simulator/Simulator.o Integrators/EulerIntegrator.o Integrators/RK4Integrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/BarnesHutForceCalculator.o ForceCalculators/ForceCalculator.o  Body/body.o Utils/utils.o Utils/vector_n.o Utils/vector3.o
 
 debug:
 	g++ $(CCFLAGS_DEBUG) -c Body/body.cpp     							-o Body/body.o
@@ -38,7 +38,7 @@ debug:
 	g++ $(CCFLAGS_DEBUG) -c Utils/vector_n.cpp 							-o Utils/vector_n.o
 	g++ $(CCFLAGS_DEBUG) -c Utils/vector3.cpp 							-o Utils/vector3.o
 
-	g++ $(CCFLAGS_DEBUG) -o sim.exe main.cpp Simulator/Simulator.o Integrators/EulerIntegrator.o Integrators/RK4Integrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/BarnesHut.o ForceCalculators/ForceCalculator.o  Body/body.o Utils/utils.o Utils/vector_n.o Utils/vector3.o
+	g++ $(CCFLAGS_DEBUG) -o sim.exe main.cpp Simulator/Simulator.o Integrators/EulerIntegrator.o Integrators/RK4Integrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/BarnesHutForceCalculator.o ForceCalculators/ForceCalculator.o  Body/body.o Utils/utils.o Utils/vector_n.o Utils/vector3.o
 
 run: build
 	sim.exe "outfile.txt" "infile.txt" 20000 0.01
