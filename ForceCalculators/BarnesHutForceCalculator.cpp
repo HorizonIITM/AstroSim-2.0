@@ -94,45 +94,39 @@ BarnesHutForceCalculator::BHTree::~BHTree()
 }
 
 void BarnesHutForceCalculator::BHTree::insertBody(GravitationalBody *body)
-{
-    if (nParticles > 1)
+{    
+    if (nParticles >= 1)
     {
-        com = (mass * com + body->mass * body->position) / (mass + body->mass);
-        mass += body->mass;
-        getOctant(body)->insertBody(body); // handle NULL
-    }
-    else if (nParticles == 1)
-    {
-        divide();
-        getOctant(particle)->insertBody(particle); // handle NULL
-        com = (mass * com + body->mass * body->position) / (mass + body->mass);
-        mass += body->mass;
-        particle = NULL;
+        if(nParticles==1){
+            divide();
+            getOctant(particle)->insertBody(particle); // handle NULL
+            particle = NULL;
+        }
         getOctant(body)->insertBody(body); // handle NULL
     }
     else
     {
-        com = body->position;
-        mass = body->mass;
         particle = body;
     }
     nParticles++;
+    com = (mass * com + body->mass * body->position) / (mass + body->mass);
+    mass += body->mass;
 }
 
 vector3 BarnesHutForceCalculator::BHTree::getForce(const GravitationalBody *body) const
 {
     vector3 force = vector3();
-    valtype r = Q_rsqrt((com - body->position).mag_square());
+    valtype r = invsqrt((com - body->position).mag_square());
     if (nParticles == 1)
     {
         if (particle->ID != body->ID)
-            force = G * body->mass * mass * (com - body->position) * pow(r, 3);
+            force = Force(*body, GravitationalBody::fakeBody(mass, com));
     }
     else if (nParticles > 1)
     {
         if (s / r < theta)
         {
-            force = G * body->mass * mass * (com - body->position) * pow(r, 3);
+            force = Force(*body, GravitationalBody::fakeBody(mass, com));
         }
 
         else

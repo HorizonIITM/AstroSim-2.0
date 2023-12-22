@@ -28,6 +28,7 @@ struct GravitationalBody{
 
     GravitationalBody(const int, const valtype,const vector3,const vector3);
     void writeCoords(ofstream&, const string&, const string&)const;
+    static GravitationalBody fakeBody(const valtype, const vector3);
 };
 
 struct GravitationalSystem{

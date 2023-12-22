@@ -1,11 +1,11 @@
 #include "utils.h"
 
 
-long double Q_rsqrt(long double number){
+long double invsqrt(long double number){
     return 1/sqrtl(number);
 }
 
-double Q_rsqrt(double number){
+double invsqrt(double number){
     return 1/sqrt(number);
 }
 

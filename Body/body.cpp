@@ -16,6 +16,10 @@ void GravitationalBody:: writeCoords(ofstream& outstream, const string& sep, con
     outstream<<position.to_string(sep)<<end;
 }
 
+GravitationalBody GravitationalBody::fakeBody(const valtype mass, const vector3 position){
+    return GravitationalBody(0, mass, position, vector3());
+}
+
 
 // struct GravitationalSystem{
 //     vector<GravitationalBody> bodies;

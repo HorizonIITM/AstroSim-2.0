@@ -1,4 +1,5 @@
 #include "vector_n.h"
+#include "utils.h"
 
 // class vector_n : protected std::vector<valtype>{
 //     protected:
@@ -116,6 +117,9 @@ valtype vector_n::mag_square()const{
         m+= c*c;
     }
     return m;
+}
+valtype vector_n::mag()const{
+    return invsqrt(mag_square());
 }
 
 
