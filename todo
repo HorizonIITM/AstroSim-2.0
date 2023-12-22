@@ -1,0 +1,7 @@
+use single vector in BarnesHut for all children. so that deleting empty ones have an effect
+
+add energy, momentum, angular momentum plotters
+
+add collisions
+
+add dynamic timestep

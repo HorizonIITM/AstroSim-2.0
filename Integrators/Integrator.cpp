@@ -18,7 +18,7 @@ Integrator::Integrator(const force_calulator_t f_t, const valtype step):f_t(f_t)
 ForceCalculator* Integrator::buildForceCalculator(GravitationalSystem& oldsystem) const{
     switch (f_t){
         case Direct : return new DirectForceCalculator(oldsystem); 
-        case BH : return new BarnesHut(oldsystem);
+        case BarnesHut : return new BarnesHutForceCalculator(oldsystem);
     }
     throw std::invalid_argument("No ForceCalculator of the specified type");
 }

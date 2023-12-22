@@ -38,6 +38,8 @@ struct GravitationalSystem{
 
     GravitationalBody& operator[](const int i);
     int size() const;
+    valtype maxSize();
+    vector3 middle();
 
     void writeBodyCoords(std::ofstream& outstream, const string& coordSep, const string& bodySep, const string& end )const;
 };
