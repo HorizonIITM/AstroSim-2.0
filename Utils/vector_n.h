@@ -28,6 +28,7 @@ class vector_n : protected std::vector<valtype>{
         vector_n operator *=(const valtype);
         vector_n operator /=(const valtype);
         valtype mag_square()const;
+        valtype mag()const;
         std::string to_string(const std::string sep)const;
 };
 
