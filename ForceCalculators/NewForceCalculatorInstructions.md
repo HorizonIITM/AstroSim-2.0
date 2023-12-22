@@ -8,8 +8,8 @@
 * make **valtype getForce (const int i) override** function which takes as input the index of body whose net force we want to calculate
 ---------------------
 * add **pragma once** and guard statements to .h file with a unique name
-* include **"Integrator.h"** and add declarations of the above in the .h file
-* include **"MyIntegrator.h"** and add definitions of the above in the .cpp file
+* include **"ForceCalculator.h"** and add declarations of the above in the .h file
+* include **"MyForceCalculator.h"** and add definitions of the above in the .cpp file
 * add lines under **build** and **debug** in **MakeFile** so that the files can be compiled
 
 refer to the treatment of **DirectForceCalculator** if confused

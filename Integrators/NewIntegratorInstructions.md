@@ -9,6 +9,7 @@
   2. step size
 and initialises the corresponding class fields
 * make **GravitationalSystem nextStep(GravitationalSystem oldsystem) const override** function which takes as input a gravitational system, and returns a system 1 step ahead in time.
+* make **~MyIntegrator() destructor** which deletes any pointers that were needed
 ---------------------
 * add pragma once and guard statements to .h file with a unique name
 * include **"Integrator.h"** and add declarations of the above in the .h file
