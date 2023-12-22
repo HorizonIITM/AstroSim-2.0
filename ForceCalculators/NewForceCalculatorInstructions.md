@@ -6,6 +6,7 @@
 ---------------------
 * make **MyForceCalculator(GravitationalSystem& s)** constructor which takes as input a gravitational system and initialises the corresponding class field
 * make **valtype getForce (const int i) override** function which takes as input the index of body whose net force we want to calculate
+* make **~MyForceCalculator() destructor** which deletes any pointers that were needed
 ---------------------
 * add **pragma once** and guard statements to .h file with a unique name
 * include **"ForceCalculator.h"** and add declarations of the above in the .h file
