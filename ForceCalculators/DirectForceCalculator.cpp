@@ -15,7 +15,7 @@ vector3 DirectForceCalculator::getForce(const int i){
         if(body.ID == current_body.ID) continue;
         // vector3 position = current_body.position- body.position;
         // valtype distsq = (position).mag_square();
-        // der+= (-(G * current_body.mass * body.mass * position) *(pow (Q_rsqrt(distsq),3.0)));
+        // der+= (-(G * current_body.mass * body.mass * position) *(pow (invsqrt(distsq),3.0)));
         der += Force(current_body, body);
     }
     return der;

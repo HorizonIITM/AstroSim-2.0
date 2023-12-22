@@ -9,7 +9,7 @@
 #include <cmath>
 #include "vector3.h"
 
-long double Q_rsqrt(long double);
-double      Q_rsqrt(double);
+long double invsqrt(long double);
+double      invsqrt(double);
 
 #endif

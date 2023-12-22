@@ -116,7 +116,7 @@ void BarnesHutForceCalculator::BHTree::insertBody(GravitationalBody *body)
 vector3 BarnesHutForceCalculator::BHTree::getForce(const GravitationalBody *body) const
 {
     vector3 force = vector3();
-    valtype r = Q_rsqrt((com - body->position).mag_square());
+    valtype r = invsqrt((com - body->position).mag_square());
     if (nParticles == 1)
     {
         if (particle->ID != body->ID)
