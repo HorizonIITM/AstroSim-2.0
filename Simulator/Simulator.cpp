@@ -43,12 +43,12 @@ void Simulator::solve(const valtype totalTime, const string filename){
     }
 
     while(progTime<totalTime){
-        if(writeFlag) s.writeBodyCoords(my_file, ",", "", "\n");
+        if(writeFlag) s.writeBodyCoords(my_file, ",", ",", "\n");
         s = integrator->nextStep(s);
         progTime+=step;
     }
 
-    if(writeFlag) s.writeBodyCoords(my_file, ",", "", "\n");
+    if(writeFlag) s.writeBodyCoords(my_file, ",", ",", "\n");
 
     delete integrator;
 }
