@@ -48,6 +48,7 @@ GravitationalSystem::  GravitationalSystem(const string&& infile){
 
         bodies.push_back(GravitationalBody(ID,m,{x,y,z},{vx*m,vy*m,vz*m}));
     }
+    //bodies.pop_back(); Last body was being read twice in my system-Amogh
 }
 
 GravitationalBody& GravitationalSystem:: operator[](const int i){
