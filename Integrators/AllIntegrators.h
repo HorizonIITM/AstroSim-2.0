@@ -8,5 +8,7 @@
 #include "Integrator.h"
 #include "EulerIntegrator.h"
 #include "RK4Integrator.h"
+#include "LeapfrogIntegrator.h"
+
 
 #endif
