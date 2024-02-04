@@ -21,12 +21,15 @@ Simulator::Simulator(std::string&& infile,  const integrator_t i_t, const force_
     :s(GravitationalSystem(std::move(infile))),
      i_t(i_t), f_t(f_t), step(step){}
 
-void Simulator::solve(const valtype totalTime, const string filename){
 
+
+void Simulator::solve(const valtype totalTime, const string filename){
+    radiusofcurvature temp;
+    valtype dstep = temp.dynamictime(s, step), stepsum = 0;
     Integrator* integrator;
     switch(i_t){
-        case Euler : integrator = new EulerIntegrator(f_t, step); break;
-        case RK4 : integrator = new RK4Integrator(f_t, step); break;
+        case Euler : integrator = new EulerIntegrator(f_t, dstep); break;
+        case RK4 : integrator = new RK4Integrator(f_t, dstep); break;
     }
 
     valtype progTime = 0;
@@ -43,9 +46,13 @@ void Simulator::solve(const valtype totalTime, const string filename){
     }
 
     while(progTime<totalTime){
-        if(writeFlag) s.writeBodyCoords(my_file, ",", ",", "\n");
+        stepsum += dstep;
+        if(writeFlag && stepsum == step){
+            s.writeBodyCoords(my_file, ",", ",", "\n");
+            stepsum = 0;
+        } 
         s = integrator->nextStep(s);
-        progTime+=step;
+        progTime+=dstep;
     }
 
     if(writeFlag) s.writeBodyCoords(my_file, ",", ",", "\n");

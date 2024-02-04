@@ -16,3 +16,8 @@ valtype distSquare(vector3 const &p1, vector3 const &p2){
     }
     return sum;
 }
+
+vector3 cross(vector3 const &p1, vector3 const &p2){
+    vector3 res = {p1[1]*p2[2] - p1[2]*p2[1], p1[2]*p2[0] - p1[0]*p2[2], p1[0]*p2[1] - p1[1]*p2[0]};
+    return res;
+}

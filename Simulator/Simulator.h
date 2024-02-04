@@ -8,6 +8,7 @@
 #include "../defs.h"
 #include "../Body/body.h"
 #include "../Integrators/AllIntegrators.h"
+#include "../DynamicStep/radiusofcurvature.h"
 
 class Simulator{
     private:
