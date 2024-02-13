@@ -5,8 +5,6 @@ CCFLAGS_DEBUG=-g -Og -fsanitize=address
 build:
 	g++ $(CCFLAGS) -c Body/body.cpp     							-o Body/body.o
 
-	g++ $(CCFLAGS) -c DynamicStep/radiusofcurvature.cpp    			-o DynamicStep/radiusofcurvature.o
-
 	g++ $(CCFLAGS) -c ForceCalculators/ForceCalculator.cpp  		-o ForceCalculators/ForceCalculator.o
 	g++ $(CCFLAGS) -c ForceCalculators/DirectForceCalculator.cpp  	-o ForceCalculators/DirectForceCalculator.o 
 	g++ $(CCFLAGS) -c ForceCalculators/BarnesHutForceCalculator.cpp  				-o ForceCalculators/BarnesHutForceCalculator.o  			
@@ -25,8 +23,6 @@ build:
 
 debug:
 	g++ $(CCFLAGS_DEBUG) -c Body/body.cpp     							-o Body/body.o
-
-	g++ $(CCFLAGS) -c DynamicStep/radiusofcurvature.cpp    			-o DynamicStep/radiusofcurvature.o
 
 	g++ $(CCFLAGS_DEBUG) -c ForceCalculators/ForceCalculator.cpp  		-o ForceCalculators/ForceCalculator.o
 	g++ $(CCFLAGS_DEBUG) -c ForceCalculators/DirectForceCalculator.cpp 	-o ForceCalculators/DirectForceCalculator.o
