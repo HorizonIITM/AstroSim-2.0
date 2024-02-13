@@ -8,10 +8,10 @@
 #include "../Integrators/AllIntegrators.h"
 #include "../Utils/utils.h"
 
-class radiusofcurvature{
+class radiusofcurvature : Integrator{
     public:
-        radiusofcurvature();
-        valtype dynamictime(GravitationalSystem& oldsystem, valtype step);
+        radiusofcurvature(const force_calulator_t f, const valtype &step);
+        valtype dynamictime(GravitationalSystem& oldsystem);
 };
 
 

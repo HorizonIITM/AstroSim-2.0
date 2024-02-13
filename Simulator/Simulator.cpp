@@ -24,8 +24,7 @@ Simulator::Simulator(std::string&& infile,  const integrator_t i_t, const force_
 
 
 void Simulator::solve(const valtype totalTime, const string filename){
-    radiusofcurvature temp;
-    valtype dstep = temp.dynamictime(s, step), stepsum = 0;
+    valtype dstep = step, stepsum = 0;
     Integrator* integrator;
     switch(i_t){
         case Euler : integrator = new EulerIntegrator(f_t, dstep); break;
@@ -49,8 +48,12 @@ void Simulator::solve(const valtype totalTime, const string filename){
         stepsum += dstep;
         if(writeFlag && stepsum == step){
             s.writeBodyCoords(my_file, ",", ",", "\n");
+            cout << 1 << " ";
             stepsum = 0;
-        } 
+            dstep = integrator->dynamictime(s);
+        }
+        else
+            cout << dstep << " ";
         s = integrator->nextStep(s);
         progTime+=dstep;
     }

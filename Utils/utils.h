@@ -12,4 +12,6 @@
 long double invsqrt(long double);
 double      invsqrt(double);
 
+vector3 cross(vector3 const &, vector3 const &);
+
 #endif
