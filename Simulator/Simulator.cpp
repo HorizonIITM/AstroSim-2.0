@@ -45,6 +45,8 @@ void Simulator::solve(const valtype totalTime, const string filename){
     while(progTime<totalTime){
         if(writeFlag) s.writeBodyCoords(my_file, ",", ",", "\n");
         s = integrator->nextStep(s);
+        Collision* collisionchecker = new Collision(s,0.8);
+        s = collisionchecker->ResolveCollisions(s);
         progTime+=step;
     }
 
