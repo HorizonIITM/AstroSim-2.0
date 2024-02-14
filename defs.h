@@ -6,12 +6,12 @@
 #define DEFS_H
 
 using valtype = long double;
-const valtype G  = 1;//16.67408e-11;
+const valtype G  = 6.67408e-11;
 
 enum integrator_t{
     Euler
     ,RK4
-    // ,LeapFrog
+    ,Leapfrog
 };
 
 enum force_calulator_t{
