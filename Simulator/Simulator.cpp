@@ -36,6 +36,24 @@ valtype energy(GravitationalSystem& g){
     return e;
 }
 
+vector3 linearMomentum(GravitationalSystem& g) {
+    vector3 totalMomentum = {0, 0, 0};
+
+    for (const auto& body : g.bodies) {
+        totalMomentum += body.momentum;
+    }
+
+    return totalMomentum;
+}
+
+// valtype angular_momentum(GravitationalSystem& g) {
+//     valtype L = 0;
+//     for (auto& b : g.bodies) {
+//         L += b.momentum.cross(b.position);
+//     }
+//     return L;
+// }
+
 void Simulator::solve(const valtype totalTime, const string filename){
 
     Integrator* integrator;

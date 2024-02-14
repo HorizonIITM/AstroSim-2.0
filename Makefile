@@ -44,7 +44,7 @@ debug:
 	g++ $(CCFLAGS_DEBUG) -o sim.exe main.cpp Simulator/Simulator.o Integrators/LeapfrogIntegrator.o Integrators/EulerIntegrator.o Integrators/RK4Integrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/BarnesHutForceCalculator.o ForceCalculators/ForceCalculator.o  Body/body.o Utils/utils.o Utils/vector_n.o Utils/vector3.o > "Energyfile.txt"
 
 run:
-	sim.exe "outfile.txt" "solar system.txt" 31536000 3600
+	sim.exe "outfile.txt" "infile.txt" 157680000 3600
 
 plot:
 	python plotting/plot.py "outfile.txt"

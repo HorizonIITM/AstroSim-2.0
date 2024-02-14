@@ -13,13 +13,21 @@ GravitationalSystem LeapfrogIntegrator::nextStep(GravitationalSystem oldsystem) 
     ForceCalculator* forceCalculator = buildForceCalculator(oldsystem);
     for(int i=0;i<oldsystem.size();i++){
         vector3 momderiv = forceCalculator->getForce(i);
-        oldsystem[i].momentum += momderiv*step;
+        oldsystem[i].momentum += momderiv*(step/2);
     }
+    delete forceCalculator;
 
     for(int i=0;i<oldsystem.size();i++){
         vector3 posderiv = oldsystem[i].momentum/oldsystem[i].mass;
         oldsystem[i].position += posderiv*step;
     }
+
+    forceCalculator = buildForceCalculator(oldsystem);
+    for(int i=0;i<oldsystem.size();i++){
+        vector3 momderiv = forceCalculator->getForce(i);
+        oldsystem[i].momentum += momderiv*(step/2);
+    }
+
     delete forceCalculator;
     return oldsystem;
-}
+}   
