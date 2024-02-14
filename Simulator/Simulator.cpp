@@ -27,8 +27,8 @@ void Simulator::solve(const valtype totalTime, const string filename){
     valtype dstep = step, stepsum = 0;
     Integrator* integrator;
     switch(i_t){
-        case Euler : integrator = new EulerIntegrator(f_t, dstep); break;
-        case RK4 : integrator = new RK4Integrator(f_t, dstep); break;
+        case Euler : integrator = new EulerIntegrator(f_t, step); break;
+        case RK4 : integrator = new RK4Integrator(f_t, step); break;
     }
 
     valtype progTime = 0;
@@ -44,18 +44,18 @@ void Simulator::solve(const valtype totalTime, const string filename){
         my_file<<"\n";
     }
 
-    while(progTime<totalTime){
-        stepsum += dstep;
+    while(progTime<totalTime){                          //error in loop, checked with main code
+        stepsum += step;
         if(writeFlag && stepsum == step){
             s.writeBodyCoords(my_file, ",", ",", "\n");
-            cout << 1 << " ";
+            //cout << 1 << " ";
             stepsum = 0;
             dstep = integrator->dynamictime(s);
         }
-        else
-            cout << dstep << " ";
+        //else
+            //cout << dstep << " ";
         s = integrator->nextStep(s);
-        progTime+=dstep;
+        progTime+=step;
     }
 
     if(writeFlag) s.writeBodyCoords(my_file, ",", ",", "\n");
