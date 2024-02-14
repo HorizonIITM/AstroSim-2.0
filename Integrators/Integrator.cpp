@@ -40,11 +40,18 @@ valtype Integrator :: dynamictime(GravitationalSystem& oldsystem){
     delete forceCalculator;
 
     valtype omega = sqrt(p.mag_square())/ (rmin * m);
+    valtype newstep = 0;
+
+    if(pow(2, llround(log(fact * omega)/log(2))) > pow(2, maxfactor)){
+        newstep = step / pow(2, maxfactor);
+    }
+    else{
+        newstep = step / pow(2, llround(log(fact * omega)/log(2)));
+    }
     
-    valtype newstep = step / pow(2, llround(log(fact * omega)/log(2)));
+    //valtype newstep = step / min(pow(2, llround(log(fact * omega)/log(2))), pow(2, maxfactor));
     //cout << newstep << endl;
 
-    if(newstep < step/pow(2, maxfactor))   newstep = step/pow(2, maxfactor);
     if(newstep > step)   newstep = step;    
 
     return newstep; 
