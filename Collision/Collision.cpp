@@ -3,76 +3,6 @@
 #include <algorithm>
 #include <vector>
 
-valtype Collision::BHTreeNew::i2sgn(const int i)
-{
-    return i == 0 ? 1.0 : -1.0;
-}
-int Collision::BHTreeNew::sgn2i(const valtype v)
-{
-    return v >= 0 ? 0 : 1;
-}
-
-void Collision::BHTreeNew::divide()
-{
-    for (int i = 0; i < 2; i++)
-    {
-        for (int j = 0; j < 2; j++)
-        {
-            for (int k = 0; k < 2; k++)
-            {
-                children[i][j][k] = new BHTreeNew(centre + s / 4 * vector3({i2sgn(i), i2sgn(j), i2sgn(k)}), s / 2);
-            }
-        }
-    }
-}
-
-Collision::BHTreeNew* Collision::BHTreeNew::getOctant(const GravitationalBody *body) const
-{
-    vector3 r = body->position - centre;
-    return children[sgn2i(r[0])][sgn2i(r[1])][sgn2i(r[2])];
-}
-
-Collision::BHTreeNew::BHTreeNew(const vector3 centre, const valtype s) : centre(centre), s(s)
-{
-    nParticles = 0;
-    particle = NULL;
-    mass = 0;
-    com = vector3();
-}
-
-Collision::BHTreeNew::~BHTreeNew()
-{
-    for (int i = 0; i < 2; i++)
-    {
-        for (int j = 0; j < 2; j++)
-        {
-            for (int k = 0; k < 2; k++)
-            {
-                delete children[i][j][k]; // delete checks if its NULL
-            }
-        }
-    }
-}
-
-void Collision::BHTreeNew::insertBody(GravitationalBody *body)
-{    
-    if (nParticles >= 1)
-    {
-        if(nParticles==1){
-            divide();
-            getOctant(particle)->insertBody(particle); // handle NULL
-            particle = NULL;
-        }
-        getOctant(body)->insertBody(body); // handle NULL
-    }
-    else
-    {
-        particle = body;
-    }
-    nParticles++;
-    com = (mass * com + body->mass * body->position) / (mass + body->mass);
-    mass += body->mass;
-}
 
 bool Collision::Intersect(vector3 cube, vector3 sphere, valtype r, valtype side)
 {
@@ -100,9 +30,9 @@ bool Collision::Intersect(vector3 cube, vector3 sphere, valtype r, valtype side)
     return dist_squared > 0;
 }
 
-void Collision::Query(GravitationalBody *body, BHTreeNew* node, vector<GravitationalBody*>& neighbours)
+void Collision::Query(GravitationalBody *body, BHTree* node, vector<GravitationalBody*>& neighbours)
 {
-    if (Intersect(node->centre,body->position,MaxRadius+body->radius,node->s)){
+    if (Intersect(node->centre,body->position,MaxRadius+body->radius,node->side)){
         if (node->nParticles>1){
             for (int i = 0; i < 2; i++)
             {
@@ -146,7 +76,7 @@ Collision::~Collision()
 GravitationalSystem Collision::ResolveCollisions(GravitationalSystem s)
 {   
     int CollisionCount = 0;
-    bhtree = new BHTreeNew(s.middle(), s.maxSize());
+    bhtree = new BHTree(s.middle(), s.maxSize());
     for (int i = 0; i < s.size(); i++)
     {
         bhtree->insertBody(&s[i]);
