@@ -39,16 +39,24 @@ GravitationalSystem::  GravitationalSystem(const string&& infile){
     //expecting inputfile with format ID M X Y  Z VX VY VZ \N
     bodies = vector<GravitationalBody>();
     ifstream instream(infile);
+
+    auto st = ofstream("newfile");
+
     while(!instream.eof()){
         int ID;
         valtype m,r,x,y,z,vx,vy,vz;
         //std::cout<<"hello"<<std::endl;
         instream>>ID>>m>>r>>x>>y>>z>>vx>>vy>>vz;
-        std::cout<<" "<<ID<<" "<<m<<" "<<x<<" "<<y<<" "<<z<<" "<<vx<<" "<<vy<<" "<<vz<<std::endl;
+        std::cout<<" "<<ID<<" "<<m<<" "<<r<<" "<<x<<" "<<y<<" "<<z<<" "<<vx<<" "<<vy<<" "<<vz<<std::endl;
 
         bodies.push_back(GravitationalBody(ID,m,r,{x,y,z},{vx*m,vy*m,vz*m}));
+        auto b = bodies[bodies.size()-1];
+        cout<<b.mass<<endl;
+        cout<<b.momentum.to_string(",")<<endl;
+        cout<<b.position.to_string(",")<<endl;
     }
-    //bodies.pop_back(); Last body was being read twice in my system-Amogh
+    
+    //bodies.pop_back(); //Last body was being read twice in my system-Amogh
 }
 
 GravitationalBody& GravitationalSystem:: operator[](const int i){
