@@ -11,11 +11,12 @@
 #include "../Utils/BarnesHutTree.h"
 
 class Collision{
+        GravitationalSystem& s;
     public:
 
         bool Intersect(vector3 cube, vector3 sphere, valtype r, valtype side);
 
-        void Query(GravitationalBody *body, BHTree* node, vector<GravitationalBody*>& neighbours);
+        void Query(GravitationalBody &body, BHTree* node, vector<GravitationalBody*>& neighbours);
 
         valtype MaxRadius = 0;   
         BHTree* bhtree;
@@ -24,7 +25,7 @@ class Collision{
         Collision(GravitationalSystem& s,valtype e);
         ~Collision();
         
-        GravitationalSystem ResolveCollisions(GravitationalSystem s);
+        GravitationalSystem ResolveCollisions(bool printCollisions);
 };
 
 #endif

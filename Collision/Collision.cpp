@@ -30,9 +30,9 @@ bool Collision::Intersect(vector3 cube, vector3 sphere, valtype r, valtype side)
     return dist_squared > 0;
 }
 
-void Collision::Query(GravitationalBody *body, BHTree* node, vector<GravitationalBody*>& neighbours)
+void Collision::Query(GravitationalBody& body, BHTree* node, vector<GravitationalBody*>& neighbours)
 {
-    if (Intersect(node->centre,body->position,MaxRadius+body->radius,node->side)){
+    if (Intersect(node->centre,body.position,MaxRadius+body.radius,node->side)){
         if (node->nParticles>1){
             for (int i = 0; i < 2; i++)
             {
@@ -50,8 +50,8 @@ void Collision::Query(GravitationalBody *body, BHTree* node, vector<Gravitationa
         }
         else if (node->nParticles==1)
         {
-            valtype d2 = pow((node->particle->position[0]-body->position[0]),2)+pow((node->particle->position[1]-body->position[1]),2)+pow((node->particle->position[2]-body->position[2]),2);
-            if (d2 <= pow(body->radius+node->particle->radius,2)){
+            valtype d2 = (node->particle->position-body.position).mag_square();
+            if (d2 <= pow(body.radius+node->particle->radius,2)){
                 neighbours.push_back(node->particle);
             }
         }
@@ -59,12 +59,17 @@ void Collision::Query(GravitationalBody *body, BHTree* node, vector<Gravitationa
 }
 
 
-Collision::Collision(GravitationalSystem& s,valtype e)
+Collision::Collision(GravitationalSystem& s,valtype e): s(s)
 {
     CoefficientOfRestitution = e;
     for (int i = 0; i < s.size(); i++)
     {
         MaxRadius = std::max(MaxRadius,s[i].radius);
+    }
+    bhtree = new BHTree(s.middle(), s.maxSize());
+    for (int i = 0; i < s.size(); i++)
+    {
+        bhtree->insertBody(&s[i]);
     }
 }
 
@@ -73,48 +78,35 @@ Collision::~Collision()
     delete bhtree;
 }
 
-GravitationalSystem Collision::ResolveCollisions(GravitationalSystem s)
+GravitationalSystem Collision::ResolveCollisions(bool printCollisions)
 {   
     int CollisionCount = 0;
-    bhtree = new BHTree(s.middle(), s.maxSize());
-    for (int i = 0; i < s.size(); i++)
-    {
-        bhtree->insertBody(&s[i]);
-    }
+    
     for (int i = 0; i < s.size(); i++)
     {
         vector<GravitationalBody*> neighbours;
-        Query(&s[i],bhtree,neighbours);
+        Query(s[i],bhtree,neighbours);
         for (int j=0;j<neighbours.size();j++){
-            if (neighbours[j] != &s[i]){
+            if (neighbours[j]->ID != s[i].ID){
                 CollisionCount+=1;
-                valtype delx = neighbours[j]->position[0] - s[i].position[0];
-                valtype dely = neighbours[j]->position[1] - s[i].position[1];
-                valtype delz = neighbours[j]->position[2] - s[i].position[2];
-                valtype r = sqrt(delx*delx+dely*dely+delz*delz);
+                vector3 del = neighbours[j]->position - s[i].position;
+                valtype r = del.mag();
                 valtype k = s[i].radius+neighbours[j]->radius-r;
-                valtype nx = delx/r;
-                valtype ny = dely/r;
-                valtype nz = delz/r;
-                valtype v_impact = nx*(s[i].momentum[0]/s[i].mass-neighbours[j]->momentum[0]/neighbours[j]->mass) + ny*(s[i].momentum[1]/s[i].mass-neighbours[j]->momentum[1]/neighbours[j]->mass) + nz*(s[i].momentum[2]/s[i].mass-neighbours[j]->momentum[2]/neighbours[j]->mass);
+                vector3 n = del/r;
+                valtype v_impact = n.dot_product(s[i].momentum/s[i].mass - neighbours[j]->momentum/neighbours[j]->mass);
                 valtype reduced_mass = (s[i].mass*neighbours[j]->mass)/(s[i].mass+neighbours[j]->mass);
                 valtype impulse = (1+CoefficientOfRestitution)*reduced_mass*v_impact;
-                s[i].momentum[0] -= impulse*nx;
-                s[i].momentum[1] -= impulse*ny;
-                s[i].momentum[2] -= impulse*nz;
-                neighbours[j]->momentum[0] += impulse*nx;
-                neighbours[j]->momentum[1] += impulse*ny;
-                neighbours[j]->momentum[2] += impulse*nz;
-                s[i].position[0] -= 0.51*k*nx;
-                s[i].position[1] -= 0.51*k*ny;
-                s[i].position[2] -= 0.51*k*nz;
-                neighbours[j]->position[0] += 0.51*k*nx;
-                neighbours[j]->position[1] += 0.51*k*ny;
-                neighbours[j]->position[2] += 0.51*k*nz;
-                std::cout<<"Collision"<<" "<<i<<" "<<j<<endl;  
+                s[i].momentum -= impulse*n;
+                neighbours[j]->momentum += impulse*n;
+                s[i].position -= 0.51*k*n;
+                neighbours[j]->position += 0.51*k*n;
+
+                if(printCollisions)
+                    cout<<"Collision"<<" "<<i<<" "<<j<<endl;  
             }
         }
     }
-    cout<<CollisionCount<<endl;
+    if (printCollisions && CollisionCount > 0)
+        cout<<CollisionCount<<endl;
     return s;
 }

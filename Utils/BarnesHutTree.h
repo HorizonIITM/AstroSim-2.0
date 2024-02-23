@@ -1,3 +1,10 @@
+#pragma once
+/*
+ * BHT.H
+ */
+#ifndef BHT_H_
+#define BHT_H_
+
 #include "vector3.h"
 #include "../Body/body.h"
 #include "../ForceCalculators/ForceCalculator.h"
@@ -30,3 +37,5 @@ class BHTree{
         but i implemented it just in case*/
         //void deleteEmpty();
 };
+
+#endif
