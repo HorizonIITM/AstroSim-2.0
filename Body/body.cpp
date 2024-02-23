@@ -50,10 +50,7 @@ GravitationalSystem::  GravitationalSystem(const string&& infile){
         std::cout<<" "<<ID<<" "<<m<<" "<<r<<" "<<x<<" "<<y<<" "<<z<<" "<<vx<<" "<<vy<<" "<<vz<<std::endl;
 
         bodies.push_back(GravitationalBody(ID,m,r,{x,y,z},{vx*m,vy*m,vz*m}));
-        auto b = bodies[bodies.size()-1];
-        cout<<b.mass<<endl;
-        cout<<b.momentum.to_string(",")<<endl;
-        cout<<b.position.to_string(",")<<endl;
+
     }
     
     //bodies.pop_back(); //Last body was being read twice in my system-Amogh

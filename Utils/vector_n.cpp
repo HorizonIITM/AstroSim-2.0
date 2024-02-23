@@ -119,7 +119,7 @@ valtype vector_n::mag_square()const{
     return m;
 }
 valtype vector_n::mag()const{
-    return invsqrt(mag_square());
+    return sqrt(mag_square());
 }
 
 
