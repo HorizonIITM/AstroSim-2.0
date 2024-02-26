@@ -145,7 +145,6 @@ Collision::~Collision()
 
 GravitationalSystem Collision::ResolveCollisions(GravitationalSystem s)
 {   
-    int CollisionCount = 0;
     bhtree = new BHTreeNew(s.middle(), s.maxSize());
     for (int i = 0; i < s.size(); i++)
     {
@@ -157,7 +156,6 @@ GravitationalSystem Collision::ResolveCollisions(GravitationalSystem s)
         Query(&s[i],bhtree,neighbours);
         for (int j=0;j<neighbours.size();j++){
             if (neighbours[j] != &s[i]){
-                CollisionCount+=1;
                 valtype delx = neighbours[j]->position[0] - s[i].position[0];
                 valtype dely = neighbours[j]->position[1] - s[i].position[1];
                 valtype delz = neighbours[j]->position[2] - s[i].position[2];
@@ -180,11 +178,9 @@ GravitationalSystem Collision::ResolveCollisions(GravitationalSystem s)
                 s[i].position[2] -= 0.51*k*nz;
                 neighbours[j]->position[0] += 0.51*k*nx;
                 neighbours[j]->position[1] += 0.51*k*ny;
-                neighbours[j]->position[2] += 0.51*k*nz;
-                std::cout<<"Collision"<<" "<<i<<" "<<j<<endl;  
+                neighbours[j]->position[2] += 0.51*k*nz; 
             }
         }
     }
-    cout<<CollisionCount<<endl;
     return s;
 }

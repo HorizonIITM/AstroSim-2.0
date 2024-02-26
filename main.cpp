@@ -43,6 +43,10 @@ int main(int argc, char *argv[]) {
     cout<<"Taking step time = "<<step<<endl;
     
     Simulator my_solver(std::move(infile), Leapfrog, Direct, step);
+    if(argc>6){
+        my_solver.CheckCollision = true;
+        my_solver.e = atof(argv[6]);
+    }
     my_solver.solve(totalProgTime, outfile);
     return 0;
 }
