@@ -46,13 +46,13 @@ vector3 linearMomentum(GravitationalSystem& g) {
     return totalMomentum;
 }
 
-// valtype angular_momentum(GravitationalSystem& g) {
-//     valtype L = 0;
-//     for (auto& b : g.bodies) {
-//         L += b.momentum.cross(b.position);
-//     }
-//     return L;
-// }
+vector3 angularMomentum(GravitationalSystem& g) {
+    vector3 L = {0 ,0, 0};
+    for (auto& b : g.bodies) {
+        L += b.momentum.cross_product(b.position);
+    }
+    return L;
+}
 
 void Simulator::solve(const valtype totalTime, const string filename){
 
@@ -65,8 +65,17 @@ void Simulator::solve(const valtype totalTime, const string filename){
 
     valtype progTime = 0;
 
+    string energy_filename = "../Conserved/energy.txt";
+    string linmom_filename= "../Conserved/linmom.txt";
+    string angmom_filename = "../Conserved/angmom.txt";
     bool writeFlag = filename=="" ? false : true;
+    bool energyFlag = energy_filename=="" ? false : true;
+    bool linmomFlag = linmom_filename=="" ? false : true;
+    bool angmomFlag = angmom_filename=="" ? false : true;
     ofstream my_file(filename); 
+    ofstream energy_file(energy_filename);
+    ofstream linmom_file(linmom_filename);
+    ofstream angmom_file(angmom_filename);
 
     if(writeFlag) {
         //my_file<<"x1,y1,z1,,,x2,y2,z2,,,x3,y3,z3,,,"<<endl; //scam
@@ -74,14 +83,31 @@ void Simulator::solve(const valtype totalTime, const string filename){
             my_file<<"x"<<i<<",y"<<i<<",z"<<i<<",";
         }
         my_file<<"\n";
+    };
+
+    if(energyFlag){
+        energy_file<<"time,energy"<<endl;
+    }
+
+    if(linmomFlag){
+        linmom_file<<"time,px,py,pz"<<endl;
+    }
+
+    if(angmomFlag){
+        angmom_file<<"time,Lx,Ly,Lz"<<endl;
     }
 
     while(progTime<totalTime){
         if(writeFlag) s.writeBodyCoords(my_file, ",", ",", "\n");
+        if(energyFlag) energy_file<<progTime<<","<<energy(s)<<endl;
+        if(linmomFlag) linmom_file<<progTime<<","<<linearMomentum(s).to_string(",")<<endl;
+        if(angmomFlag) angmom_file<<progTime<<","<<angularMomentum(s).to_string(",")<<endl;
+
         s = integrator->nextStep(s);
-        cout<<energy(s)<<endl;
         progTime+=step;
     }
+
+
 
     if(writeFlag) s.writeBodyCoords(my_file, ",", ",", "\n");
 
