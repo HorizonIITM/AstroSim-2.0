@@ -4,7 +4,7 @@
  */
 #ifndef UTILS_H_
 #define UTILS_H_
-
+#include<omp.h>
 #include "../defs.h"
 #include <cmath>
 #include "vector3.h"
