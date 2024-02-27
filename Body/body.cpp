@@ -10,14 +10,14 @@
 //     void writeCoords(ofstream&, const string&, const string&)const;
 // };
 
-GravitationalBody:: GravitationalBody(const int ID, const valtype mass,const vector3 position,const vector3 momentum): ID(ID), mass(mass), position(position), momentum(momentum){}
+GravitationalBody:: GravitationalBody(const int ID, const valtype mass, const valtype radius, const vector3 position,const vector3 momentum): ID(ID), mass(mass), radius(radius), position(position), momentum(momentum){}
 
 void GravitationalBody:: writeCoords(ofstream& outstream, const string& sep, const string& end)const {
     outstream<<position.to_string(sep)<<end;
 }
 
 GravitationalBody GravitationalBody::fakeBody(const valtype mass, const vector3 position){
-    return GravitationalBody(0, mass, position, vector3());
+    return GravitationalBody(0, mass, 0, position, vector3());
 }
 
 
@@ -39,16 +39,21 @@ GravitationalSystem::  GravitationalSystem(const string&& infile){
     //expecting inputfile with format ID M X Y  Z VX VY VZ \N
     bodies = vector<GravitationalBody>();
     ifstream instream(infile);
+
+    auto st = ofstream("newfile");
+
     while(!instream.eof()){
         int ID;
-        valtype m,x,y,z,vx,vy,vz;
+        valtype m,r,x,y,z,vx,vy,vz;
         //std::cout<<"hello"<<std::endl;
-        instream>>ID>>m>>x>>y>>z>>vx>>vy>>vz;
-        std::cout<<" "<<ID<<" "<<m<<" "<<x<<" "<<y<<" "<<z<<" "<<vx<<" "<<vy<<" "<<vz<<std::endl;
+        instream>>ID>>m>>r>>x>>y>>z>>vx>>vy>>vz;
+        std::cout<<" "<<ID<<" "<<m<<" "<<r<<" "<<x<<" "<<y<<" "<<z<<" "<<vx<<" "<<vy<<" "<<vz<<std::endl;
 
-        bodies.push_back(GravitationalBody(ID,m,{x,y,z},{vx*m,vy*m,vz*m}));
+        bodies.push_back(GravitationalBody(ID,m,r,{x,y,z},{vx*m,vy*m,vz*m}));
+
     }
-    //bodies.pop_back(); Last body was being read twice in my system-Amogh
+    
+    //bodies.pop_back(); //Last body was being read twice in my system-Amogh
 }
 
 GravitationalBody& GravitationalSystem:: operator[](const int i){

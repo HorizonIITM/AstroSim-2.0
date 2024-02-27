@@ -7,6 +7,7 @@
 
 #include "../defs.h"
 #include "../Body/body.h"
+#include "../Collision/Collision.h"
 #include "../Integrators/AllIntegrators.h"
 
 class Simulator{

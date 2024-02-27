@@ -23,10 +23,11 @@ using std::vector;
 struct GravitationalBody{
     int ID;
     valtype mass;
+    valtype radius;
     vector3 position;
     vector3 momentum;
 
-    GravitationalBody(const int, const valtype,const vector3,const vector3);
+    GravitationalBody(const int, const valtype, const valtype,const vector3,const vector3);
     void writeCoords(ofstream&, const string&, const string&)const;
     static GravitationalBody fakeBody(const valtype, const vector3);
 };

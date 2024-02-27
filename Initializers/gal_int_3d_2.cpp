@@ -1,10 +1,7 @@
-#include <iostream>
-#include <fstream>
-#include <cmath>
-#include <vector>
-#include <cstdlib>
-#include <ctime>
-#include <random>
+#pragma once
+#include "gal_init.h"
+
+
 
 using namespace std;
 
@@ -71,13 +68,14 @@ public:
     }
 };
 
-int main() {
+void gal_intializer(std::string input_file) {
     SpiralGalaxyPotential spiralGalaxy;
+    int counter = 0;
 
     // Defining grid---need to adjust values to match repo
     Grid myGrid(100, 100, 50.0, 50.0);
 
-    std::ofstream outputFile("galaxy_data_3d.csv");
+    std::ofstream outputFile(input_file);
     float max_potential = 0;
     float min_potential = 0;
     for (int row = 0; row < myGrid.rows; ++row) {
@@ -107,13 +105,13 @@ int main() {
 
             // Writing data to the output file--threshold needed
             if (star.mass >0 && star.potential < -3.1002e+9){
-            outputFile << star.x << "," << star.y << "," << star.z << "," << star.mass << ","
-                        << star.vx << "," << star.vy << "," << star.vz << "," << star.potential << "\n";};
+                counter +=1;
+            outputFile<<counter<< star.mass <<star.x << " " << star.y << " " << star.z << " "
+                        << star.vx << " " << star.vy << " " << star.vz <<"\n";};
             
         }
     }
 
     outputFile.close();
-    cout<<max_potential/min_potential;
-    return 0;
+    
 }

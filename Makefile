@@ -5,6 +5,8 @@ CCFLAGS_DEBUG=-g -Og -fsanitize=address
 build:
 	g++ $(CCFLAGS) -c Body/body.cpp     							-o Body/body.o
 
+	g++ $(CCFLAGS) -c Collision/Collision.cpp     					-o Collision/Collision.o
+
 	g++ $(CCFLAGS) -c ForceCalculators/ForceCalculator.cpp  		-o ForceCalculators/ForceCalculator.o
 	g++ $(CCFLAGS) -c ForceCalculators/DirectForceCalculator.cpp  	-o ForceCalculators/DirectForceCalculator.o 
 	g++ $(CCFLAGS) -c ForceCalculators/BarnesHutForceCalculator.cpp  				-o ForceCalculators/BarnesHutForceCalculator.o  			
@@ -20,14 +22,17 @@ build:
 	g++ $(CCFLAGS) -c Utils/vector_n.cpp 							-o Utils/vector_n.o
 	g++ $(CCFLAGS) -c Utils/vector3.cpp 							-o Utils/vector3.o
 
+
 	g++ $(CCFLAGS) -c Initializers/Asteroid.cpp					-o Initializers/Asteroid.o
 
 
-	g++ $(CCFLAGS) -o sim.exe main.cpp Simulator/Simulator.o Integrators/LeapfrogIntegrator.o Integrators/EulerIntegrator.o Integrators/RK4Integrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/BarnesHutForceCalculator.o ForceCalculators/ForceCalculator.o  Body/body.o Utils/utils.o Utils/vector_n.o Utils/vector3.o Initializers/Asteroid.o
+	g++ $(CCFLAGS) -o sim.exe main.cpp Simulator/Simulator.o Collision/Collision.o Integrators/LeapfrogIntegrator.o Integrators/EulerIntegrator.o Integrators/RK4Integrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/BarnesHutForceCalculator.o ForceCalculators/ForceCalculator.o  Body/body.o Utils/utils.o Utils/vector_n.o Utils/vector3.o Initializers/Asteroid.o
 
 
 debug:
 	g++ $(CCFLAGS_DEBUG) -c Body/body.cpp     							-o Body/body.o
+
+	g++ $(CCFLAGS) -c Collision/Collision.cpp     					    -o Collision/Collision.o
 
 	g++ $(CCFLAGS_DEBUG) -c ForceCalculators/ForceCalculator.cpp  		-o ForceCalculators/ForceCalculator.o
 	g++ $(CCFLAGS_DEBUG) -c ForceCalculators/DirectForceCalculator.cpp 	-o ForceCalculators/DirectForceCalculator.o
@@ -45,7 +50,7 @@ debug:
 
   g++ $(CCFLAGS_DEBUG) -c Initializers/Asteroid.cpp					-o Initializers/Asteroid.o
 
-	g++ $(CCFLAGS_DEBUG) -o sim.exe main.cpp Simulator/Simulator.o Integrators/LeapfrogIntegrator.o Integrators/EulerIntegrator.o Integrators/RK4Integrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/BarnesHutForceCalculator.o ForceCalculators/ForceCalculator.o  Body/body.o Utils/utils.o Utils/vector_n.o Utils/vector3.o Initializers/Asteroid.o
+	g++ $(CCFLAGS_DEBUG) -o sim.exe main.cpp Simulator/Simulator.o Collision/Collision.o Integrators/LeapfrogIntegrator.o Integrators/EulerIntegrator.o Integrators/RK4Integrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/BarnesHutForceCalculator.o ForceCalculators/ForceCalculator.o  Body/body.o Utils/utils.o Utils/vector_n.o Utils/vector3.o Initializers/Asteroid.o
 
 run:
 	sim.exe "outfile.txt" "infile.txt" 20000 0.01 1
