@@ -69,7 +69,6 @@ void Simulator::solve(const valtype totalTime, const string filename){
     ofstream my_file(filename); 
 
     if(writeFlag) {
-        //my_file<<"x1,y1,z1,,,x2,y2,z2,,,x3,y3,z3,,,"<<endl; //scam
         for(int i=1;i<=(s.bodies).size();i++){
             my_file<<"x"<<i<<",y"<<i<<",z"<<i<<",";
         }
@@ -81,8 +80,8 @@ void Simulator::solve(const valtype totalTime, const string filename){
         s = integrator->nextStep(s);
 
         Collision* collisionchecker = new Collision(s,0.8);
-        s = collisionchecker->ResolveCollisions(s);
-        cout<<energy(s)<<endl;
+        s = collisionchecker->ResolveCollisions(false);
+        // cout<<energy(s)<<endl;
         progTime+=step;
     }
 
