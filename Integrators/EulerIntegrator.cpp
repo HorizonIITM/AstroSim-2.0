@@ -6,7 +6,7 @@
 //         GravitationalSystem nextStep(GravitationalSystem oldsystem) const override;
 // };
 
-EulerIntegrator::EulerIntegrator(const force_calulator_t f, const valtype& step):Integrator(f,step){}
+EulerIntegrator::EulerIntegrator(const force_calulator_t f, const valtype step):Integrator(f,step){}
 
 
 GravitationalSystem EulerIntegrator::nextStep(GravitationalSystem oldsystem) const{
