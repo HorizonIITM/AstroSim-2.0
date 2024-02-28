@@ -4,6 +4,7 @@ RK4Integrator::RK4Integrator(const force_calulator_t f, const valtype step):Inte
 
 
 GravitationalSystem RK4Integrator::nextMiniStep(GravitationalSystem oldsystem, valtype f)const{
+    //repetition of code from EulerIntegrator
     ForceCalculator* forceCalculator = buildForceCalculator(oldsystem);
     GravitationalSystem step1 = oldsystem;
 

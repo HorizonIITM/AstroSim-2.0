@@ -1,7 +1,18 @@
-use single vector in BarnesHut for all children. so that deleting empty ones have an effect
+fix input output system
 
-add energy, momentum, angular momentum plotters
+eof in reading (extra body)
+handle bodies at same pos in barnes hut
 
-add collisions
+collisions
 
-add dynamic timestep
+asteroid init, galaxy init
+plotters
+
+savefig 
+
+dyn timestep not done yet
+
+options for plotting, collisions etc
+(option for specifying radius?)
+
+recursion limit in BarnesHut

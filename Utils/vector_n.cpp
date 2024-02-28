@@ -137,3 +137,17 @@ std::string vector_n::to_string(const std::string sep)const{
     return s;
 }
 
+
+bool vector_n::operator ==(const vector_n& v)const{
+    if(!equalsize(*this, v)){
+        throw "Type Mismatch"; 
+    }
+    for(int i=0;i<size();i++){
+        if (operator[](i) != operator[](i))
+            return false;
+    }
+    return true;
+}
+bool vector_n::operator !=(const vector_n& v)const{
+    return ! operator==(v);
+}
