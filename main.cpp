@@ -7,7 +7,7 @@
 int main(int argc, char *argv[]) {
     string outfile = "nbodyoutput.txt";
     string infile = "";
-    valtype totalProgTime = 2000;
+    valtype totalProgTime = 20000;
     valtype step = 0.01;
     if(argc>1){
         outfile = argv[1];

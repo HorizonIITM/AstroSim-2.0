@@ -13,10 +13,10 @@
 //         //should make it reference. but then need to change implementation
 // };
 
-Integrator::Integrator(const force_calulator_t f_t, const valtype& step):f_t(f_t),step(step){}
+Integrator::Integrator(const force_calulator_t f_t, valtype step):f_t(f_t),step(step){}
 
 valtype Integrator :: dynamictime(GravitationalSystem& oldsystem){
-    valtype rmin = 0, m = 0, maxfactor = 10, fact = 0.4;
+    valtype rmin = 0, m = 0, maxfactor = 5, fact = 0.2;
     valtype stepmin = step/pow(2, maxfactor);
     vector3 p = oldsystem[0].momentum, F = {0, 0, 0}; 
 
@@ -50,9 +50,10 @@ valtype Integrator :: dynamictime(GravitationalSystem& oldsystem){
     }
     
     //valtype newstep = step / min(pow(2, llround(log(fact * omega)/log(2))), pow(2, maxfactor));
-    //cout << newstep << endl;
+    cout << newstep << endl;
 
-    if(newstep > step)   newstep = step;    
+    if(newstep > step)   newstep = step;   
+    //step = newstep; 
 
     return newstep; 
 }

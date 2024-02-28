@@ -45,17 +45,18 @@ void Simulator::solve(const valtype totalTime, const string filename){
     }
 
     while(progTime<totalTime){                          //error in loop, checked with main code
-        stepsum += step;
+        stepsum += dstep;
         if(writeFlag && stepsum == step){
             s.writeBodyCoords(my_file, ",", ",", "\n");
             //cout << 1 << " ";
             stepsum = 0;
             dstep = integrator->dynamictime(s);
+            //dstep = step;
         }
-        //else
-            //cout << dstep << " ";
+        // cout << dstep << " ";
+            
         s = integrator->nextStep(s);
-        progTime+=step;
+        progTime+=dstep;
     }
 
     if(writeFlag) s.writeBodyCoords(my_file, ",", ",", "\n");

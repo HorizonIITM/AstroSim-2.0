@@ -41,16 +41,16 @@ debug:
 	g++ $(CCFLAGS_DEBUG) -o sim.exe main.cpp Simulator/Simulator.o Integrators/EulerIntegrator.o Integrators/RK4Integrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/BarnesHutForceCalculator.o ForceCalculators/ForceCalculator.o  Body/body.o Utils/utils.o Utils/vector_n.o Utils/vector3.o
 
 run: build
-	./sim.exe "outfile.txt" "infile.txt" 20000 0.01
+	./sim.exe "outfile.txt" "infile.txt" 2000 0.01
 
 plot:
-	python plotting/plot.py "outfile.txt"
+	python3 plotting/plot.py "outfile.txt"
 
 3dplot:
-	python plotting/3Dplot.py "outfile.txt" 10
+	python3 plotting/3Dplot.py "outfile.txt" 10
 
 animate:
-	python plotting/animate.py "outfile.txt" 100
+	python3 plotting/animate.py "outfile.txt" 100
 
 clean:
 	rm -f */*.o
