@@ -106,7 +106,7 @@ void gal_intializer(std::string input_file) {
             // Writing data to the output file--threshold needed
             if (star.mass >0 && star.potential < -3.1002e+9){
                 counter +=1;
-            outputFile<<counter<< star.mass <<star.x << " " << star.y << " " << star.z << " "
+            outputFile<<counter<< star.mass << " 0 " <<star.x << " " << star.y << " " << star.z << " "
                         << star.vx << " " << star.vy << " " << star.vz <<"\n";};
             
         }
