@@ -48,6 +48,7 @@ int main(int argc, char *argv[]) {
     //     my_solver.e = atof(argv[6]);
     // }
     my_solver.CheckCollision = true;
+    my_solver.e = 0.9;
     my_solver.solve(totalProgTime, outfile);
     return 0;
 }
