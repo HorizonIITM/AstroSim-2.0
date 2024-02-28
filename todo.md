@@ -10,7 +10,7 @@ recursion limit in BarnesHut, handle bodies at same pos in barnes hut
 
 rk4 logic??
 
-
+better options format. have some config file
 
 
 # low priority:

@@ -114,7 +114,7 @@ void Simulator::solve(const valtype totalTime, const string filename){
         progTime+=step;
         SolveEnd = clock();
         valtype SolveTime = valtype(SolveEnd - SolveStart)/valtype(CLOCKS_PER_SEC);
-        std::cout<<"Iteration "<<progTime/step<<" : "<<SolveTime<<" s"<<'\n';
+        // std::cout<<"Iteration "<<progTime/step<<" : "<<SolveTime<<" s"<<'\n';
     }
 
 
