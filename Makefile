@@ -50,14 +50,13 @@ debug:
 	g++ $(CCFLAGS_DEBUG) -fopenmp -c Utils/vector3.cpp 							-o Utils/vector3.o
 	g++ $(CCFLAGS_DEBUG) -fopenmp -c Utils/BarnesHutTree.cpp 							-o Utils/BarnesHutTree.o
 
-
-  g++ $(CCFLAGS_DEBUG) -fopenmp -c Initializers/Asteroid.cpp					-o Initializers/Asteroid.o
+	g++ $(CCFLAGS_DEBUG) -fopenmp -c Initializers/Asteroid.cpp
 
 
 	g++ $(CCFLAGS_DEBUG) -fopenmp -o sim.exe main.cpp Simulator/Simulator.o Collision/Collision.o Integrators/LeapfrogIntegrator.o Integrators/EulerIntegrator.o Integrators/RK4Integrator.o Integrators/Integrator.o ForceCalculators/DirectForceCalculator.o ForceCalculators/BarnesHutForceCalculator.o ForceCalculators/ForceCalculator.o  Body/body.o Utils/utils.o Utils/vector_n.o Utils/vector3.o Utils/BarnesHutTree.o Initializers/Asteroid.o
 
 run:
-	sim.exe "outfile.txt" "infile.txt" 2 0.01 0 1
+	sim.exe "outfile.txt" "infile.txt" 20000 0.01 0 0
 
 conservation_plots: 
 	python plotting/conservationplots.py

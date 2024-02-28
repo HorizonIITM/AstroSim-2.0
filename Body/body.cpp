@@ -36,21 +36,16 @@ GravitationalBody GravitationalBody::fakeBody(const valtype mass, const vector3 
 GravitationalSystem::  GravitationalSystem(const vector<GravitationalBody>&& bodies): bodies(bodies){}
 
 GravitationalSystem::  GravitationalSystem(const string&& infile){
-    //expecting inputfile with format ID M X Y  Z VX VY VZ \N
+    //expecting inputfile with format ID M R X Y Z VX VY VZ \N
     bodies = vector<GravitationalBody>();
     ifstream instream(infile);
-
-    auto st = ofstream("newfile");
-
-    while(!instream.eof()){
-        int ID;
+    int ID;
+    while(instream>>ID){
         valtype m,r,x,y,z,vx,vy,vz;
-        //std::cout<<"hello"<<std::endl;
-        instream>>ID>>m>>r>>x>>y>>z>>vx>>vy>>vz;
+        instream>>m>>r>>x>>y>>z>>vx>>vy>>vz;
         std::cout<<" "<<ID<<" "<<m<<" "<<r<<" "<<x<<" "<<y<<" "<<z<<" "<<vx<<" "<<vy<<" "<<vz<<std::endl;
 
         bodies.push_back(GravitationalBody(ID,m,r,{x,y,z},{vx*m,vy*m,vz*m}));
-
     }
     
     //bodies.pop_back(); //Last body was being read twice in my system-Amogh

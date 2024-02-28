@@ -28,25 +28,26 @@ int main(int argc, char *argv[]) {
     if(argc>4){
         step = atof(argv[4]);
     }
-    if (argc>5) {
-        init_type = atoi(argv[5]);
-        switch (init_type){
-        case 1:
-            initialize_asteroids(infile);
-            break;
-            //Add other initializers here
-        default:
-            break;
-        }
-    }
+    // if (argc>5) {
+    //     init_type = atoi(argv[5]);
+    //     switch (init_type){
+    //     case 1:
+    //         initialize_asteroids(infile);
+    //         break;
+    //         //Add other initializers here
+    //     default:
+    //         break;
+    //     }
+    // }
     cout<<"Taking total time = "<<totalProgTime<<endl;
     cout<<"Taking step time = "<<step<<endl;
     
-    Simulator my_solver(std::move(infile), Leapfrog, Direct, step);
-    if(argc>6){
-        my_solver.CheckCollision = true;
-        my_solver.e = atof(argv[6]);
-    }
+    Simulator my_solver(std::move(infile), Euler, BarnesHut, step);
+    // if(argc>6){
+    //     my_solver.CheckCollision = true;
+    //     my_solver.e = atof(argv[6]);
+    // }
+    my_solver.CheckCollision = true;
     my_solver.solve(totalProgTime, outfile);
     return 0;
 }
