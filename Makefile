@@ -55,6 +55,9 @@ debug:
 run:
 	sim.exe "outfile.txt" "infile.txt" 2 0.01 0 1
 
+conservation_plots: 
+	python plotting/conservationplots.py
+
 
 plot:
 	python plotting/plot.py "outfile.txt"
@@ -70,6 +73,9 @@ clean:
 	rm -f outfile.txt
 	rm -f sim.exe
 
-runplot: run plot
+runplot: run plot 
+
+runconservation: run plot conservation_plots
 
 buildrunplot: build run animate
+

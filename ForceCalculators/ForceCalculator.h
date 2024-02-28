@@ -11,9 +11,10 @@
 class ForceCalculator{
     protected:
         GravitationalSystem s;
+        
+    public:
         static vector3 Force(const GravitationalBody&, const GravitationalBody&);
         static vector3 Force(const GravitationalBody*, const GravitationalBody*);
-    public:
         ForceCalculator(GravitationalSystem& s);
         virtual ~ForceCalculator() = default;
         virtual vector3 getForce(const int i)= 0;

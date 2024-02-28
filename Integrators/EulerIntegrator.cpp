@@ -13,8 +13,10 @@ GravitationalSystem EulerIntegrator::nextStep(GravitationalSystem oldsystem) con
     ForceCalculator* forceCalculator = buildForceCalculator(oldsystem);
     for(int i=0;i<oldsystem.size();i++){
         vector3 posderiv = oldsystem[i].momentum/oldsystem[i].mass;
-        vector3 momderiv = forceCalculator->getForce(i);
         oldsystem[i].position += posderiv*step;
+    }
+    for(int i=0;i<oldsystem.size();i++){
+        vector3 momderiv = forceCalculator->getForce(i);
         oldsystem[i].momentum += momderiv*step;
     }
     delete forceCalculator;

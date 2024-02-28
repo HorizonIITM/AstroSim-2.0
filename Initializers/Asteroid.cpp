@@ -28,7 +28,7 @@ void initialize_asteroids(std::string infile) { //Produces n asteroids
 	valtype w_y = 0.01;
 	valtype w_z = 0.01;
 	vector3 angular_velocity({ w_x,w_y,w_z }); //Systematic anguolar velocity given to all particles, with gaussian "noise".
-
+	valtype radius = 0;
 	std::ofstream input_conds(infile);
 
 
@@ -67,7 +67,7 @@ void initialize_asteroids(std::string infile) { //Produces n asteroids
 	positions[0] = ini_pos;
 	velocities[0]=ini_vel;
 	input_conds << 0 << " ";
-	input_conds << 10 * max_mass << " ";
+	input_conds << 10 * max_mass << " " <<radius<<" ";
 	input_conds << 0.0 << " " << 0.0 << " " << 0.0 << " ";
 	input_conds << 0.0 << " " << 0.0 << " " << 0.0 << std::endl;
 	n_so_far = 1;
