@@ -15,7 +15,7 @@ class Integrator{ //abstract class
         const valtype step;
         ForceCalculator* buildForceCalculator(GravitationalSystem& oldsystem) const;
     public:
-        Integrator(const force_calulator_t f_t, const valtype &step);
+        Integrator(const force_calulator_t f_t, const valtype step);
         valtype dynamictime(GravitationalSystem& oldsystem);
         virtual ~Integrator() = default;
         virtual GravitationalSystem nextStep(GravitationalSystem oldsystem) const= 0; 
