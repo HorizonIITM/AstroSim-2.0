@@ -97,6 +97,8 @@ void Simulator::solve(const valtype totalTime, const string filename){
     }
 
     while(progTime<totalTime){
+        clock_t SolveStart,SolveEnd;
+        SolveStart = clock();
         if(writeFlag) s.writeBodyCoords(my_file, ",", ",", "\n");
         if(energyFlag) energy_file<<progTime<<","<<energy(s)<<endl;
         if(linmomFlag) linmom_file<<progTime<<","<<linearMomentum(s).to_string(",")<<endl;
@@ -104,10 +106,15 @@ void Simulator::solve(const valtype totalTime, const string filename){
 
         s = integrator->nextStep(s);
 
-        Collision* collisionchecker = new Collision(s,0.8);
-        s = collisionchecker->ResolveCollisions(false);
+        if(CheckCollision){
+            Collision* collisionchecker = new Collision(s,e);
+            s = collisionchecker->ResolveCollisions(false);
+        }
 
         progTime+=step;
+        SolveEnd = clock();
+        valtype SolveTime = valtype(SolveEnd - SolveStart)/valtype(CLOCKS_PER_SEC);
+        std::cout<<"Iteration "<<progTime/step<<" : "<<SolveTime<<" s"<<'\n';
     }
 
 

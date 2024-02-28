@@ -22,6 +22,8 @@ class Simulator{
         Simulator(std:: string&& infile, const integrator_t i_t, const force_calulator_t f_t, const valtype step);
 
         void solve(const valtype totaltime, const string filename);
+        bool CheckCollision = false;
+        valtype e = 0;
 };
 
 
