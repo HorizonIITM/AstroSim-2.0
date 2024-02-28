@@ -13,7 +13,7 @@
 //         //should make it reference. but then need to change implementation
 // };
 
-Integrator::Integrator(const force_calulator_t f_t, const valtype& step):f_t(f_t),step(step){}
+Integrator::Integrator(const force_calulator_t f_t, const valtype step):f_t(f_t),step(step){}
 
 valtype Integrator :: dynamictime(GravitationalSystem& oldsystem){
     valtype rmin = 0, m = 0, maxfactor = 10, fact = 0.4;
@@ -53,6 +53,7 @@ valtype Integrator :: dynamictime(GravitationalSystem& oldsystem){
     //cout << newstep << endl;
 
     if(newstep > step)   newstep = step;    
+    step = newstep;
 
     return newstep; 
 }
