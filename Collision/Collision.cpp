@@ -80,13 +80,14 @@ Collision::~Collision()
 
 GravitationalSystem Collision::ResolveCollisions(bool printCollisions)
 {   
+
     int CollisionCount = 0;
-    
     for (int i = 0; i < s.size(); i++)
     {
         vector<GravitationalBody*> neighbours;
         Query(s[i],bhtree,neighbours);
         for (int j=0;j<neighbours.size();j++){
+
             if (neighbours[j]->ID != s[i].ID){
                 CollisionCount+=1;
                 vector3 del = neighbours[j]->position - s[i].position;
