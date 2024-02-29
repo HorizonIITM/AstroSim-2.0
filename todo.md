@@ -12,6 +12,8 @@ rk4 logic??
 
 better options format. have some config file
 
+energy not gettuing saved
+
 
 # low priority:
 

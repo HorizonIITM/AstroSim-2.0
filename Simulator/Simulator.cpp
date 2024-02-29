@@ -29,7 +29,7 @@ valtype energy(GravitationalSystem& g){
     for(auto&b1 : g.bodies){
         for(auto&b2: g.bodies){
             if(b1.ID!=b2.ID){
-                e+=-G*b1.mass*b2.mass/(b1.position-b2.position).mag();
+                e+=-(G*b1.mass*b2.mass/(b1.position-b2.position).mag())/2;
             }
         }
     }
@@ -65,9 +65,9 @@ void Simulator::solve(const valtype totalTime, const string filename){
 
     valtype progTime = 0;
 
-    string energy_filename = "../Conserved/energy.txt";
-    string linmom_filename= "../Conserved/linmom.txt";
-    string angmom_filename = "../Conserved/angmom.txt";
+    string energy_filename = "ConservedLogs/energy.txt";
+    string linmom_filename= "ConservedLogs/linmom.txt";
+    string angmom_filename = "ConservedLogs/angmom.txt";
     bool writeFlag = filename=="" ? false : true;
     bool energyFlag = energy_filename=="" ? false : true;
     bool linmomFlag = linmom_filename=="" ? false : true;

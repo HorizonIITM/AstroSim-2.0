@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-energy_filename = "../Conserved/energy.txt"
-linmom_filename= "../Conserved/linmom.txt"
-angmom_filename = "../Conserved/angmom.txt"
+energy_filename = "./ConservedLogs/energy.txt"
+linmom_filename= "./ConservedLogs/linmom.txt"
+angmom_filename = "./ConservedLogs/angmom.txt"
 
 data_e = pd.read_csv(energy_filename)
 data_p = pd.read_csv(linmom_filename)
@@ -49,17 +49,17 @@ plt.show()
 plt.subplot(2,2,1)
 plt.plot(data_L["time"], data_L["Lx"])
 plt.xlabel("Time")
-plt.ylabel("x-Momentum")
+plt.ylabel("x-Angular Momentum")
 
 plt.subplot(2,2,2)
 plt.plot(data_L["time"], data_L["Ly"])
 plt.xlabel("Time")
-plt.ylabel("y-Momentum")
+plt.ylabel("y-Angular Momentum")
 
 plt.subplot(2,2,3)
 plt.plot(data_L["time"], data_L["Lz"])
 plt.xlabel("Time")
-plt.ylabel("z-Momentum")
+plt.ylabel("z-Angular Momentum")
 
 plt.subplot(2,2,4)
 plt.plot(data_L["time"], data_L["L_magnitude"])
