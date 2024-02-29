@@ -12,8 +12,8 @@
 #include "../defs.h"
 
 
-void initialize_asteroids(std::string infile) { //Produces n asteroids
-	long long int n_ini_bodies = 10;
+void initialize_asteroids(std::string infile, long long int n_bodies) { //Produces n asteroids
+	long long int n_ini_bodies = n_bodies;
 	valtype G = 1.0;
 	valtype max_mass = 100.0;
 	valtype min_mass = 10.0;
@@ -102,6 +102,7 @@ void initialize_asteroids(std::string infile) { //Produces n asteroids
 		mass_sum = mass_sum + ini_mass;
 		input_conds << n_so_far << " ";
 		input_conds << ini_mass << " ";
+		input_conds << asteroid_radius << " ";
 		input_conds << ini_pos[0] << " " << ini_pos[1] << " " << ini_pos[2] << " ";
 		input_conds << ini_vel[0] << " " << ini_vel[1] << " " << ini_vel[2] << std::endl;
 		n_so_far += 1;
