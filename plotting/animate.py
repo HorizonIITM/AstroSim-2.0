@@ -7,11 +7,14 @@ import sys
 n = len(sys.argv)
 filename = "nbodyoutput.txt"
 stepsize = 100
+trail = -1 #-1 is full, otherwise specifies length
 if n>1:
     filename = sys.argv[1]
 if n>2:
     stepsize = int(sys.argv[2])
-trail =True
+if n>3:
+    trail = int(sys.argv[3])
+
     
     
 
@@ -24,8 +27,10 @@ ax = plt.axes(projection = '3d')
 
 def update(frame):
     s = frame
-    if trail:
+    if trail == -1:
         s = 0
+    else :
+        s = max(0, frame - trail)
         
     
     ax.cla()
