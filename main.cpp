@@ -3,7 +3,6 @@
 #include "Simulator/Simulator.h"
 #include "Body/body.h"
 #include "defs.h"
-#include "Initializers/AllInitializers.h"
 
 
 int main(int argc, char *argv[]) {
@@ -28,17 +27,7 @@ int main(int argc, char *argv[]) {
     if(argc>4){
         step = atof(argv[4]);
     }
-    // if (argc>5) {
-    //     init_type = atoi(argv[5]);
-    //     switch (init_type){
-    //     case 1:
-    //         initialize_asteroids(infile);
-    //         break;
-    //         //Add other initializers here
-    //     default:
-    //         break;
-    //     }
-    // }
+ 
     cout<<"Taking total time = "<<totalProgTime<<endl;
     cout<<"Taking step time = "<<step<<endl;
     
