@@ -16,7 +16,7 @@ AstroSim code rewritten in a manner such that it is easy to add new integrators 
     - In "main.cpp" - In Line 34, "Euler" can be changed to "Leapfrog" or "RK4" (RK4 or Leapfrog are recommended).
 
 ## - Choose a Force Calculation Method 
-### - In "main.cpp" - In Line 34, "BarnesHut" can be changed to "Direct" (BarnesHut recommended when particle_count>1000).
+    - In "main.cpp" - In Line 34, "BarnesHut" can be changed to "Direct" (BarnesHut recommended when particle_count>1000).
     - The efficieny of the BarnesHut method can be changed by changing the parameter theta found in "BarnesHutTree.h" (recommended value is 0.4-0.5 for large particle counts).
 
 ## - Initial Conditions 
@@ -34,8 +34,8 @@ AstroSim code rewritten in a manner such that it is easy to add new integrators 
     - The accuracy of the results can be verified by checking if Energy, Linear and Angular Momentum are conserved.
     - By default, the Energy and momentum values are computed every timestep and saved in the "ConservedLogs" folder.
     - To turn of Energy or Momentum computation, comment out lines 103-105 in "Simulator.cpp" using "//".
-### - Note that Energy Conservation is O(n^2) which might cause the solver to slow down.
-### - The time per iteration can be printed out after every iteration by uncommenting line 117 in "Simulator.cpp".
+    - Note that Energy Conservation is O(n^2) which might cause the solver to slow down.
+    - The time per iteration can be printed out after every iteration by uncommenting line 117 in "Simulator.cpp".
 
 ## - Running the Simulation
     - Build the code using "make build"
