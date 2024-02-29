@@ -13,11 +13,11 @@
 //         //should make it reference. but then need to change implementation
 // };
 
-Integrator::Integrator(const force_calulator_t f_t, valtype step):f_t(f_t),step(step){}
+Integrator::Integrator(const force_calulator_t f_t, valtype orgstep):f_t(f_t),orgstep(orgstep){}
 
 valtype Integrator :: dynamictime(GravitationalSystem& oldsystem){
     valtype rmin = 0, m = 0, maxfactor = 5, fact = 0.2;
-    valtype stepmin = step/pow(2, maxfactor);
+    valtype stepmin = orgstep/pow(2, maxfactor);
     vector3 p = oldsystem[0].momentum, F = {0, 0, 0}; 
 
     m = oldsystem[0].mass;
@@ -40,22 +40,21 @@ valtype Integrator :: dynamictime(GravitationalSystem& oldsystem){
     delete forceCalculator;
 
     valtype omega = sqrt(p.mag_square())/ (rmin * m);
-    valtype newstep = 0;
 
     if(pow(2, llround(log(fact * omega)/log(2))) > pow(2, maxfactor)){
-        newstep = step / pow(2, maxfactor);
+        step = orgstep / pow(2, maxfactor);
     }
     else{
-        newstep = step / pow(2, llround(log(fact * omega)/log(2)));
+        step = orgstep / pow(2, llround(log(fact * omega)/log(2)));
     }
     
     //valtype newstep = step / min(pow(2, llround(log(fact * omega)/log(2))), pow(2, maxfactor));
-    cout << newstep << endl;
+    // cout << step << endl;
 
-    if(newstep > step)   newstep = step;   
-    //step = newstep; 
+    if(step > orgstep)   step = orgstep;
 
-    return newstep; 
+    //cout << step << " ";
+    return step; 
 }
 
 ForceCalculator* Integrator::buildForceCalculator(GravitationalSystem& oldsystem) const{
