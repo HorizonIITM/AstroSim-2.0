@@ -85,15 +85,15 @@ void Simulator::solve(const valtype totalTime, const string filename){
     };
 
     if(energyFlag){
-        energy_file<<"time,energy"<<endl;
+        energy_file<<"Time,Energy"<<endl;
     }
 
     if(linmomFlag){
-        linmom_file<<"time,px,py,pz"<<endl;
+        linmom_file<<"Time,Px,Py,Pz"<<endl;
     }
 
     if(angmomFlag){
-        angmom_file<<"time,Lx,Ly,Lz"<<endl;
+        angmom_file<<"Time,Lx,Ly,Lz"<<endl;
     }
 
     while(progTime<totalTime){

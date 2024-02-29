@@ -1,4 +1,5 @@
 #include "RK4Integrator.h"
+#include "omp.h"
 
 RK4Integrator::RK4Integrator(const force_calulator_t f, const valtype step):Integrator(f,step){}
 
@@ -7,7 +8,7 @@ GravitationalSystem RK4Integrator::nextMiniStep(GravitationalSystem oldsystem, v
     //repetition of code from EulerIntegrator
     ForceCalculator* forceCalculator = buildForceCalculator(oldsystem);
     GravitationalSystem step1 = oldsystem;
-
+    #pragma omp parallel for
     for(int i=0;i<step1.size();i++){
         vector3 posderiv = oldsystem[i].momentum/oldsystem[i].mass;
         step1[i].position += posderiv*f*step;
@@ -25,7 +26,7 @@ GravitationalSystem RK4Integrator::nextStep(GravitationalSystem oldsystem) const
     GravitationalSystem step2 = nextMiniStep(step1,     0.5);
     GravitationalSystem step3 = nextMiniStep(step2,     1);
     GravitationalSystem step4 = nextMiniStep(step3,     1);
-
+    #pragma omp parallel for
     for(int i=0;i<oldsystem.size();i++){
         oldsystem[i].position += (  2*step1[i].position+ 
                                     4*step2[i].position+ 
