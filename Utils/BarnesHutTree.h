@@ -10,7 +10,7 @@
 #include "../ForceCalculators/ForceCalculator.h"
 class BHTree{
     public:    
-        const valtype theta = 0;
+        const valtype theta = 0.5;
         valtype mass; // total mass of node
         vector3 com;  // centre of mass of node
 
