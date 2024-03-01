@@ -55,7 +55,7 @@ vector3 angularMomentum(GravitationalSystem& g) {
 }
 
 void Simulator::solve(const valtype totalTime, const string filename){
-
+    valtype dstep = step, stepsum = 0;
     Integrator* integrator;
     switch(i_t){
         case Euler : integrator = new EulerIntegrator(f_t, step); break;
@@ -96,10 +96,19 @@ void Simulator::solve(const valtype totalTime, const string filename){
         angmom_file<<"Time,Lx,Ly,Lz"<<endl;
     }
 
-    while(progTime<totalTime){
+    while(progTime<totalTime){                          //error in loop, checked with main code
+        stepsum += dstep;
         clock_t SolveStart,SolveEnd;
         SolveStart = clock();
-        if(writeFlag) s.writeBodyCoords(my_file, ",", ",", "\n");
+        if(writeFlag && stepsum == step){
+            s.writeBodyCoords(my_file, ",", ",", "\n");
+            //cout << 1 << " ";
+            stepsum = 0;
+            dstep = integrator->dynamictime(s);
+            //dstep = step;
+        }
+        //cout << dstep << " ";
+            
         if(energyFlag) energy_file<<progTime<<","<<energy(s)<<endl;
         if(linmomFlag) linmom_file<<progTime<<","<<linearMomentum(s).to_string(",")<<endl;
         if(angmomFlag) angmom_file<<progTime<<","<<angularMomentum(s).to_string(",")<<endl;
