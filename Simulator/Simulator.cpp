@@ -102,7 +102,7 @@ void Simulator::solve(const valtype totalTime, const string filename){
         SolveStart = clock();
         if(writeFlag && stepsum == step){
             s.writeBodyCoords(my_file, ",", ",", "\n");
-            cout << 1 << " ";
+            //cout << 1 << " ";
             stepsum = 0;
             dstep = integrator->dynamictime(s);
             //dstep = step;
