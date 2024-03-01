@@ -1,4 +1,3 @@
-#pragma once
 #include "gal_init.h"
 
 

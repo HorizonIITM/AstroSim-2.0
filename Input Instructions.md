@@ -9,3 +9,7 @@ Enter body information in infile.txt in the format
 3 m r x y z vx vy vz
 
 ...
+
+
+
+
