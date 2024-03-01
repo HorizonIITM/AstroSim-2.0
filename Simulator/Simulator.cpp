@@ -53,7 +53,7 @@ void Simulator::solve(const valtype totalTime, const string filename){
             dstep = integrator->dynamictime(s);
             //dstep = step;
         }
-        // cout << dstep << " ";
+        //cout << dstep << " ";
             
         s = integrator->nextStep(s);
         progTime+=dstep;

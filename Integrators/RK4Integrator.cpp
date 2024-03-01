@@ -1,6 +1,6 @@
 #include "RK4Integrator.h"
 
-RK4Integrator::RK4Integrator(const force_calulator_t f, const valtype &step):Integrator(f,step){}
+RK4Integrator::RK4Integrator(const force_calulator_t f, const valtype step):Integrator(f,step){}
 
 
 GravitationalSystem RK4Integrator::nextMiniStep(GravitationalSystem oldsystem, valtype f)const{
