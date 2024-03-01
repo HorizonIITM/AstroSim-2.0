@@ -10,6 +10,7 @@
 #include "../Collision/Collision.h"
 #include "../Integrators/AllIntegrators.h"
 
+
 class Simulator{
     private:
         const integrator_t i_t;

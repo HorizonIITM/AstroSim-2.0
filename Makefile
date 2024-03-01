@@ -69,10 +69,10 @@ initialize:
 	init.exe 0 1000 "infile.txt"
 
 plot:
-	python plotting/plot.py "outfile.txt"
+	python3 plotting/plot.py "outfile.txt"
 
 3dplot:
-	python plotting/3Dplot.py "outfile.txt" 10
+	python3 plotting/3Dplot.py "outfile.txt" 10
 
 animate:
 	python plotting/animate.py "outfile.txt" 100 10
