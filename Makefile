@@ -75,7 +75,7 @@ plot:
 	python plotting/3Dplot.py "outfile.txt" 10
 
 animate:
-	python plotting/animate.py "outfile.txt" 100
+	python plotting/animate.py "outfile.txt" 100 10
 
 clean:
 	rm -f */*.o
