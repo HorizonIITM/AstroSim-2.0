@@ -60,22 +60,22 @@ debug:
 	g++ $(CCFLAGS_DEBUG) -fopenmp -o init.exe Initializers/AllInitializers.o Initializers/Asteroid.o Utils/utils.o Utils/vector_n.o Utils/vector3.o
 
 run:
-	./sim.exe "outfile.txt" "infile.txt" 100 0.001 0 0
+	sim.exe "outfile.txt" "infile.txt" 100 0.001 0 0
 
 conservation_plots: 
-	python3 plotting/conservationplots.py
+	python plotting/conservationplots.py
 
 initialize:
 	init.exe 0 1000 "infile.txt"
 
 plot:
-	python3 plotting/plot.py "outfile.txt"
+	python plotting/plot.py "outfile.txt"
 
 3dplot:
-	python3 plotting/3Dplot.py "outfile.txt" 10
+	python plotting/3Dplot.py "outfile.txt" 10
 
 animate:
-	python3 plotting/animate.py "outfile.txt" 100 10
+	python plotting/animate.py "outfile.txt" 100 10
 
 clean:
 	rm -f */*.o
