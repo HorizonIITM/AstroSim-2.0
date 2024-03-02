@@ -12,6 +12,7 @@ EulerIntegrator::EulerIntegrator(const force_calulator_t f, const valtype step):
 
 GravitationalSystem EulerIntegrator::nextStep(GravitationalSystem oldsystem) const{
     ForceCalculator* forceCalculator = buildForceCalculator(oldsystem);
+    //cout << step << " ";
     #pragma omp parallel for
     for(int i=0;i<oldsystem.size();i++){
         vector3 posderiv = oldsystem[i].momentum/oldsystem[i].mass;

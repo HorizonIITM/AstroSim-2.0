@@ -104,7 +104,7 @@ void Simulator::solve(const valtype totalTime, const string filename){
             s.writeBodyCoords(my_file, ",", ",", "\n");
             //cout << 1 << " ";
             stepsum = 0;
-            dstep = integrator->dynamictime(s);
+            //dstep = integrator->dynamictime(s);
             //dstep = step;
         }
         //cout << dstep << " ";
