@@ -60,7 +60,7 @@ debug:
 	g++ $(CCFLAGS_DEBUG) -fopenmp -o init.exe Initializers/AllInitializers.o Initializers/Asteroid.o Utils/utils.o Utils/vector_n.o Utils/vector3.o
 
 run:
-	./sim.exe "outfile.txt" "infile.txt" 2000 0.01 0 0
+	./sim.exe "outfile.txt" "infile.txt" 100 0.001 0 0
 
 conservation_plots: 
 	python3 plotting/conservationplots.py
